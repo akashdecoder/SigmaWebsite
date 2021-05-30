@@ -1,0 +1,576 @@
+/*@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:900&display=swap');*/
+/*!*!* The actual timeline (the vertical ruler) *!*!*/
+/*!*.timeline {*!*/
+/*!*  position: relative;*!*/
+/*!*  max-width: 1200px;*!*/
+/*!*  margin: 0 auto;*!*/
+/*!*}*!*/
+
+/*!*!* The actual timeline (the vertical ruler) *!*!*/
+/*!*.timeline::after {*!*/
+/*!*  content: '';*!*/
+/*!*  position: absolute;*!*/
+/*!*  width: 6px;*!*/
+/*!*  background-color: rgb(13, 36, 35);*!*/
+/*!*  top: 0;*!*/
+/*!*  bottom: 0;*!*/
+/*!*  left: 50%;*!*/
+/*!*  margin-left: -3px;*!*/
+/*!*}*!*/
+
+/*!*!* container1 around content *!*!*/
+/*!*.container1 {*!*/
+/*!*  padding: 10px 50px;*!*/
+/*!*  position: relative;*!*/
+/*!*  background-color: inherit;*!*/
+/*!*  width: 50%;*!*/
+/*!*}*!*/
+
+/*!*!* The circles on the timeline *!*!*/
+/*!*.container1::after {*!*/
+/*!*  content: '';*!*/
+/*!*  position: absolute;*!*/
+/*!*  width: 25px;*!*/
+/*!*  height: 25px;*!*/
+/*!*  right: -17px;*!*/
+/*!*  background-color: white;*!*/
+/*!*  border: 4px solid rgb(7, 92, 88);*!*/
+/*!*  top: 15px;*!*/
+/*!*  border-radius: 50%;*!*/
+/*!*  z-index: 1;*!*/
+/*!*}*!*/
+
+/*!*!* Place the container1 to the left *!*!*/
+/*!*.left {*!*/
+/*!*  left: 0;*!*/
+/*!*}*!*/
+
+/*!*!* Place the container1 to the right *!*!*/
+/*!*.right {*!*/
+/*!*  left: 50%;*!*/
+/*!*}*!*/
+
+/*!*!* Add arrows to the left container1 (pointing right) *!*!*/
+/*!*.left::before {*!*/
+/*!*  content: " ";*!*/
+/*!*  height: 0;*!*/
+/*!*  position: absolute;*!*/
+/*!*  top: 22px;*!*/
+/*!*  width: 0;*!*/
+/*!*  z-index: 1;*!*/
+/*!*  right: 30px;*!*/
+/*!*  border: medium solid skyblue;*!*/
+/*!*  border-width: 10px 0 10px 10px;*!*/
+/*!*  border-color: transparent transparent transparent skyblue;*!*/
+/*!*}*!*/
+
+/*!*!* Add arrows to the right container1 (pointing left) *!*!*/
+/*!*.right::before {*!*/
+/*!*  content: " ";*!*/
+/*!*  height: 0;*!*/
+/*!*  position: absolute;*!*/
+/*!*  top: 22px;*!*/
+/*!*  width: 0;*!*/
+/*!*  z-index: 1;*!*/
+/*!*  left: 30px;*!*/
+/*!*  border: medium solid skyblue;*!*/
+/*!*  border-width: 10px 10px 10px 0;*!*/
+/*!*  border-color: transparent skyblue transparent transparent;*!*/
+/*!*}*!*/
+
+/*!*!* Fix the circle for container1s on the right side *!*!*/
+/*!*.right::after {*!*/
+/*!*  left: -16px;*!*/
+/*!*}*!*/
+
+/*!*!* The actual content *!*!*/
+/*!*.content {*!*/
+/*!*  padding: 20px 30px;*!*/
+/*!*  background-color: white;*!*/
+/*!*  position: relative;*!*/
+/*!*  border-radius: 6px;*!*/
+/*!*}*!*/
+
+/*!*!* Media queries - Responsive timeline on screens less than 600px wide *!*!*/
+/*!*@media screen and (max-width: 600px) {*!*/
+/*!*!* Place the timelime to the left *!*!*/
+/*!*  .timeline::after {*!*/
+/*!*    left: 31px;*!*/
+/*!*  }*!*/
+
+/*!*!* Full-width container1s *!*!*/
+/*!*  .container1 {*!*/
+/*!*    width: 100%;*!*/
+/*!*    padding-left: 70px;*!*/
+/*!*    padding-right: 25px;*!*/
+/*!*  }*!*/
+
+/*!*!* Make sure that all arrows are pointing leftwards *!*!*/
+/*!*  .container1::before {*!*/
+/*!*    left: 60px;*!*/
+/*!*    border: medium solid skyblue;*!*/
+/*!*    border-width: 10px 10px 10px 0;*!*/
+/*!*    border-color: transparent skyblue transparent transparent;*!*/
+/*!*  }*!*/
+
+/*!*!* Make sure all circles are at the same spot *!*!*/
+/*!*  .left::after, .right::after {*!*/
+/*!*    left: 15px;*!*/
+/*!*  }*!*/
+
+/*!*!* Make all right container1s behave like the left ones *!*!*/
+/*!*  .right {*!*/
+/*!*    left: 0%;*!*/
+/*!*  }*!*/
+/*!*}*!*/
+
+
+/*!*.d {*!*/
+/*!*  display: inline-block;*!*/
+/*!*  font-size: 1.5em;*!*/
+/*!*  list-style-type: none;*!*/
+/*!*  padding: 1em;*!*/
+/*!*  text-transform: uppercase;*!*/
+/*!*}*!*/
+
+/*!*.d span {*!*/
+/*!*  display: block;*!*/
+/*!*  font-size: 4.5rem;*!*/
+/*!*}*!*/
+
+/*!*ul.lists {*!*/
+/*!*  list-style-type: circle;*!*/
+/*!*}*!*/
+
+
+/*!*!* Media queries - Responsive timeline on screens less than 600px wide *!*!*/
+/*!*@media screen and (max-width: 600px) {*!*/
+/*!*  !* Place the timelime to the left *!*!*/
+/*!*    .timeline::after {*!*/
+/*!*      left: 31px;*!*/
+/*!*    }*!*/
+/*!*  *!*/
+/*!*  !* Full-width container1s *!*!*/
+/*!*    .container1 {*!*/
+/*!*      width: 100%;*!*/
+/*!*      padding-left: 70px;*!*/
+/*!*      padding-right: 25px;*!*/
+/*!*    }*!*/
+
+/*!*    .container-countdown {*!*/
+/*!*      width: auto;*!*/
+/*!*      padding-left: 70px;*!*/
+/*!*      padding-right: 25px;*!*/
+/*!*    }*!*/
+
+
+/*!*  !* Make sure that all arrows are pointing leftwards *!*!*/
+/*!*    .container1::before {*!*/
+/*!*      left: 60px;*!*/
+/*!*      border: medium solid skyblue;*!*/
+/*!*      border-width: 10px 10px 10px 0;*!*/
+/*!*      border-color: transparent skyblue transparent transparent;*!*/
+/*!*    }*!*/
+/*!*  *!*/
+/*!*  !* Make sure all circles are at the same spot *!*!*/
+/*!*    .left::after, .right::after {*!*/
+/*!*      left: 15px;*!*/
+/*!*    }*!*/
+/*!*  *!*/
+/*!*  !* Make all right container1s behave like the left ones *!*!*/
+/*!*    .right {*!*/
+/*!*      left: 0%;*!*/
+/*!*    }*!*/
+
+/*!*    .d {*!*/
+/*!*      font-size: 1.125rem;*!*/
+/*!*      padding: .75rem;*!*/
+/*!*    }*!*/
+/*!*    *!*/
+/*!*    .d span {*!*/
+/*!*      font-size: 3.375rem;*!*/
+/*!*    }*!*/
+/*!*  }*!*/
+
+/*!*  .black-lives-matter {*!*/
+/*!*    font-size: 3vw;*!*/
+/*!*    line-height: 8vw;*!*/
+/*!*    margin: 0;*!*/
+/*!*    font-family: 'Red Hat Display', sans-serif;*!*/
+/*!*    font-weight: 900;*!*/
+/*!*    background: url('/mainimages/dynamic.png');*!*/
+/*!*    background-size: 40%;*!*/
+/*!*    background-position: 50% 50%;*!*/
+/*!*    -webkit-background-clip: text;*!*/
+/*!*    color: rgba(0,0,0,0.08);*!*/
+/*!*    animation: zoomout 10s ease 500ms forwards;*!*/
+/*!*  }*!*/
+/*!*  *!*/
+/*!*  @keyframes zoomout {*!*/
+/*!*    from {*!*/
+/*!*      background-size: 40%;*!*/
+/*!*    }*!*/
+/*!*    to {*!*/
+/*!*      background-size: 10%;*!*/
+/*!*    }*!*/
+/*!*  }*!*/
+
+/*.timeline {*/
+/*  border-left: 3px solid #727cf5;*/
+/*  border-bottom-right-radius: 4px;*/
+/*  border-top-right-radius: 4px;*/
+/*  background: rgba(114, 124, 245, 0.09);*/
+/*  margin: 0 auto;*/
+/*  letter-spacing: 0.2px;*/
+/*  position: relative;*/
+/*  line-height: 1.4em;*/
+/*  font-size: 1.03em;*/
+/*  padding: 50px;*/
+/*  list-style: none;*/
+/*  text-align: left;*/
+/*  max-width: 40%;*/
+/*}*/
+
+/*@media (max-width: 767px) {*/
+/*  .timeline {*/
+/*    max-width: 98%;*/
+/*    padding: 25px;*/
+/*  }*/
+/*}*/
+
+/*.timeline h1 {*/
+/*  font-weight: 300;*/
+/*  font-size: 1.4em;*/
+/*}*/
+
+/*.timeline h2,*/
+/*.timeline h3 {*/
+/*  font-weight: 600;*/
+/*  font-size: 1rem;*/
+/*  margin-bottom: 10px;*/
+/*}*/
+
+/*.timeline .event {*/
+/*  border-bottom: 1px dashed #e8ebf1;*/
+/*  padding-bottom: 25px;*/
+/*  margin-bottom: 25px;*/
+/*  position: relative;*/
+/*}*/
+
+/*@media (max-width: 767px) {*/
+/*  .timeline .event {*/
+/*    padding-top: 30px;*/
+/*  }*/
+/*}*/
+
+/*.timeline .event:last-of-type {*/
+/*  padding-bottom: 0;*/
+/*  margin-bottom: 0;*/
+/*  border: none;*/
+/*}*/
+
+/*.timeline .event:before,*/
+/*.timeline .event:after {*/
+/*  position: absolute;*/
+/*  display: block;*/
+/*  top: 0;*/
+/*}*/
+
+/*.timeline .event:before {*/
+/*  left: -207px;*/
+/*  content: attr(data-date);*/
+/*  text-align: right;*/
+/*  font-weight: 100;*/
+/*  font-size: 0.9em;*/
+/*  min-width: 120px;*/
+/*}*/
+
+/*@media (max-width: 767px) {*/
+/*  .timeline .event:before {*/
+/*    left: 0px;*/
+/*    text-align: left;*/
+/*  }*/
+/*}*/
+
+/*.timeline .event:after {*/
+/*  -webkit-box-shadow: 0 0 0 3px #727cf5;*/
+/*  box-shadow: 0 0 0 3px #727cf5;*/
+/*  left: -55.8px;*/
+/*  background: #fff;*/
+/*  border-radius: 50%;*/
+/*  height: 9px;*/
+/*  width: 9px;*/
+/*  content: "";*/
+/*  top: 5px;*/
+/*}*/
+
+/*@media (max-width: 767px) {*/
+/*  .timeline .event:after {*/
+/*    left: -31.8px;*/
+/*  }*/
+/*}*/
+
+/*.rtl .timeline {*/
+/*  border-left: 0;*/
+/*  text-align: right;*/
+/*  border-bottom-right-radius: 0;*/
+/*  border-top-right-radius: 0;*/
+/*  border-bottom-left-radius: 4px;*/
+/*  border-top-left-radius: 4px;*/
+/*  border-right: 3px solid #727cf5;*/
+/*}*/
+
+/*.rtl .timeline .event::before {*/
+/*  left: 0;*/
+/*  right: -170px;*/
+/*}*/
+
+/*.rtl .timeline .event::after {*/
+/*  left: 0;*/
+/*  right: -55.8px;*/
+/*}*/
+
+
+.card-box {
+  padding: 20px;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  background-color: #fff;
+}
+
+.social-links li a {
+  border-radius: 50%;
+  color: rgba(121, 121, 121, .8);
+  display: inline-block;
+  height: 30px;
+  line-height: 27px;
+  border: 2px solid rgba(121, 121, 121, .5);
+  text-align: center;
+  width: 30px
+}
+
+.social-links li a:hover {
+  color: #797979;
+  border: 2px solid #797979
+}
+.thumb-lg {
+  height: 100px;
+  width: 100px;
+}
+.img-thumbnail {
+  padding: .25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: .25rem;
+  max-width: 100%;
+  height: auto;
+}
+.text-pink {
+  color: #ff679b!important;
+}
+.btn-rounded {
+  border-radius: 2em;
+}
+.text-muted {
+  color: #98a6ad!important;
+}
+h4 {
+  line-height: 22px;
+  font-size: 18px;
+}
+
+.main-timeline4 {
+  overflow: hidden;
+  position: relative
+}
+
+.main-timeline4:after,
+.main-timeline4:before {
+  content: "";
+  display: block;
+  width: 100%;
+  clear: both
+}
+
+.main-timeline4:before {
+  content: "";
+  width: 3px;
+  height: 100%;
+  background: #d6d5d5;
+  position: absolute;
+  top: 30px;
+  left: 50%
+}
+
+.main-timeline4 .timeline {
+  width: 50%;
+  float: left;
+  padding-right: 30px;
+  position: relative
+}
+
+.main-timeline4 .timeline-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #fe6847;
+  position: absolute;
+  top: 5.5%;
+  right: -17.5px
+}
+
+.main-timeline4 .year {
+  display: block;
+  padding: 10px;
+  margin: 0;
+  font-size: 30px;
+  color: #fff;
+  border-radius: 0 50px 50px 0;
+  background: #fe6847;
+  text-align: center;
+  position: relative
+}
+
+.main-timeline4 .year:before {
+  content: "";
+  border-top: 35px solid #f59c8b;
+  border-left: 35px solid transparent;
+  position: absolute;
+  bottom: -35px;
+  left: 0
+}
+
+.main-timeline4 .timeline-content {
+  padding: 30px 20px;
+  margin: 0 45px 0 35px;
+  background: #f2f2f2
+}
+
+.main-timeline4 .title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #504f54;
+  margin: 0 0 10px
+}
+
+.main-timeline4 .description {
+  font-size: 14px;
+  color: #7d7b7b;
+  margin: 0
+}
+
+.main-timeline4 .timeline:nth-child(2n) {
+  padding: 0 0 0 30px
+}
+
+.main-timeline4 .timeline:nth-child(2n) .timeline-icon {
+  right: auto;
+  left: -14.5px
+}
+
+.main-timeline4 .timeline:nth-child(2n) .year {
+  border-radius: 50px 0 0 50px;
+  background: #7eda99
+}
+
+.main-timeline4 .timeline:nth-child(2n) .year:before {
+  border-left: none;
+  border-right: 35px solid transparent;
+  left: auto;
+  right: 0
+}
+
+.main-timeline4 .timeline:nth-child(2n) .timeline-content {
+  text-align: right;
+  margin: 0 35px 0 45px
+}
+
+.main-timeline4 .timeline:nth-child(2) {
+  margin-top: 170px
+}
+
+.main-timeline4 .timeline:nth-child(odd) {
+  margin: -175px 0 0
+}
+
+.main-timeline4 .timeline:nth-child(even) {
+  margin-bottom: 80px
+}
+
+.main-timeline4 .timeline:first-child,
+.main-timeline4 .timeline:last-child:nth-child(even) {
+  margin: 0
+}
+
+.main-timeline4 .timeline:nth-child(2n) .timeline-icon {
+  border-color: #7eda99
+}
+
+.main-timeline4 .timeline:nth-child(2n) .year:before {
+  border-top-color: #92efad
+}
+
+.main-timeline4 .timeline:nth-child(3n) .timeline-icon {
+  border-color: #8a5ec1
+}
+
+.main-timeline4 .timeline:nth-child(3n) .year {
+  background: #8a5ec1
+}
+
+.main-timeline4 .timeline:nth-child(3n) .year:before {
+  border-top-color: #a381cf
+}
+
+.main-timeline4 .timeline:nth-child(4n) .timeline-icon {
+  border-color: #f98d9c
+}
+
+.main-timeline4 .timeline:nth-child(4n) .year {
+  background: #f98d9c
+}
+
+.main-timeline4 .timeline:nth-child(4n) .year:before {
+  border-top-color: #f2aab3
+}
+
+@media only screen and (max-width:767px) {
+  .main-timeline4 {
+    overflow: visible
+  }
+  .main-timeline4:before {
+    top: 0;
+    left: 0
+  }
+  .main-timeline4 .timeline:nth-child(2),
+  .main-timeline4 .timeline:nth-child(even),
+  .main-timeline4 .timeline:nth-child(odd) {
+    margin: 0
+  }
+  .main-timeline4 .timeline {
+    width: 100%;
+    float: none;
+    padding: 0 0 0 30px;
+    margin-bottom: 20px!important
+  }
+  .main-timeline4 .timeline:last-child {
+    margin: 0!important
+  }
+  .main-timeline4 .timeline-icon {
+    right: auto;
+    left: -14.5px
+  }
+  .main-timeline4 .year {
+    border-radius: 50px 0 0 50px
+  }
+  .main-timeline4 .year:before {
+    border-left: none;
+    border-right: 35px solid transparent;
+    left: auto;
+    right: 0
+  }
+  .main-timeline4 .timeline-content {
+    margin: 0 35px 0 45px
+  }
+}
