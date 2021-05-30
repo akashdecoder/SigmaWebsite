@@ -21,6 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -49,13 +51,29 @@ public class PostController {
         String body2 = request.getParameter("body2");
         String conclusion = request.getParameter("conclusion");
 
+        String title = openUser.getTitle();
+        List<OpenUser> openUsers = openUserRepository.getAllByTitle(title);
+        for(OpenUser user : openUsers) {
+            if(user.getTitle().equals(title) == true) {
+                ObjectError error = new ObjectError("validationError", "Title error");
+                result.addError(error);
+                redirectAttributes.addFlashAttribute("warning", openUser.getFirstname() + " The title has already " +
+                        "been taken. Please drop different title.");
+                break;
+            }
+        }
+        if(result.hasErrors()) {
+            return "redirect:/open_article";
+        }
+
         openUser.setIntroduction(introduction);
         openUser.setBody1(body1);
         if(!body2.isEmpty()) {
             openUser.setBody2(body2);
         }
         openUser.setConclusion(conclusion);
-
+        redirectAttributes.addFlashAttribute("message", openUser.getFirstname() + " Article has been uploaded. It " +
+                        "will be reviewed by the organzation.");
         openUserRepository.save(openUser);
         return "redirect:/open_article";
     }

@@ -26,7 +26,7 @@
                     <a class="nav-link" href="/articles"><b>Articles</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/open_articles">Contribute</a>
+                    <a class="nav-link" href="/open_article">Contribute</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/editions"><b>Sigma Editions</b></a>
@@ -58,8 +58,8 @@
     <form class="form-group text-center" method="post"
           th:action="@{/contributed}"
           th:object="${openUser}">
-        <div th:if="${warning1 != null}" class="alert alert-danger text-center">[[${warning1}]]</div>
-        <div th:if="${message1 != null}" class="alert alert-success text-center">[[${message1}]]</div>
+        <div th:if="${warning != null}" class="alert alert-danger text-center">[[${warning}]]</div>
+        <div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
         <div class="row g-3">
             <div class="col-md-6">
                 <div class="form-floating">
