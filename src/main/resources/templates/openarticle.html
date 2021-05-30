@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" href="/mainimages/sigmlogo.jpeg" type="image/x-icon" >
     <link type="text/css"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link type="text/css"  href="/style.css" rel="stylesheet">
@@ -61,34 +62,41 @@
     <div class="container">
 
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="card h-100 col-md-12">
+            <div class="card h-100 col-md-12" th:each="articles: ${articles}">
                 <div class="section-title text-center">
-                    <h3>Quantum Computing</h3>
-                    <h2>Akash Ranjan Das</h2>
-                    <h4>1SI18CS008</h4>
+                    <h3 th:text="${articles.title}"></h3>
+                    <h2 th:text="${articles.firstname} + ' ' + ${articles.lastname}"></h2>
+                    <h4 th:text="${articles.usn}"></h4>
                 </div>
-                <p style="color: black;">
-                    Sigma is the newsletter of Computer Science and Engineering Department. It was started in the year of 2001. Team sigma was created to provide the students with updates and information about the latest trends and technology in the domain of computer science.Sigma currently consists of 24 members. The basic idea to form this group was to incorporate any upcoming or latest technology at one place and make the students aware of all information and technology which is worth knowing for any student of a computer science background.
-                    Sigma team also conducts fun and interactive events for students for all years and all branches. It conducts a technical article writing contest for the students each year ,from which three write ups will be selected and published in the edition and will be awarded with cash prizes.
+                <p style="color: black;" th:text="${articles.introduction}">
                 </p>
-                <p style="color: black;">
-                    Sigma is the newsletter of Computer Science and Engineering Department. It was started in the year of 2001. Team sigma was created to provide the students with updates and information about the latest trends and technology in the domain of computer science.Sigma currently consists of 24 members. The basic idea to form this group was to incorporate any upcoming or latest technology at one place and make the students aware of all information and technology which is worth knowing for any student of a computer science background.
-                    Sigma team also conducts fun and interactive events for students for all years and all branches. It conducts a technical article writing contest for the students each year ,from which three write ups will be selected and published in the edition and will be awarded with cash prizes.
+                <p style="color: black;" th:text="${articles.body1}">
                 </p>
 
-                <p style="color: black;">
-                    Sigma is the newsletter of Computer Science and Engineering Department. It was started in the year of 2001. Team sigma was created to provide the students with updates and information about the latest trends and technology in the domain of computer science.Sigma currently consists of 24 members. The basic idea to form this group was to incorporate any upcoming or latest technology at one place and make the students aware of all information and technology which is worth knowing for any student of a computer science background.
-                    Sigma team also conducts fun and interactive events for students for all years and all branches. It conducts a technical article writing contest for the students each year ,from which three write ups will be selected and published in the edition and will be awarded with cash prizes.
+                <p style="color: black;" th:text="${articles.body2}">
                 </p>
 
-                <p style="color: black;">
-                    Sigma is the newsletter of Computer Science and Engineering Department. It was started in the year of 2001. Team sigma was created to provide the students with updates and information about the latest trends and technology in the domain of computer science.Sigma currently consists of 24 members. The basic idea to form this group was to incorporate any upcoming or latest technology at one place and make the students aware of all information and technology which is worth knowing for any student of a computer science background.
-                    Sigma team also conducts fun and interactive events for students for all years and all branches. It conducts a technical article writing contest for the students each year ,from which three write ups will be selected and published in the edition and will be awarded with cash prizes.
+                <p style="color: black;" th:text="${articles.conclusion}">
                 </p>
             </div>
         </div>
         <br>
         <br>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="section-wb">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2><b>!! Coming Soon !!</b></h2>
+            <h1>Please visit our previous newspapers till then
+                .&ensp;<a href="/editions" style="color: darkorange"><b>Click Here.</b></a></h1>
+        </div>
     </div>
 </div>
 
@@ -107,7 +115,7 @@
     <br>
 </div>
 
-<div class="copyrights">
+<div class="copyrights fixed-bottom">
     <div class="container">
         <div class="footer-distributed">
             <a href="#"><img src="" alt="" /></a>
@@ -115,9 +123,8 @@
                 <p class="footer-company-name"><h1 style="color: bisque;"><b>Sigma Newsletter</b></h1></p>
                 <p class="footer-links">
                     <a href="/">Home</a>
-                    <a href="/register">Articles</a>
-                    <a href="/register">Contribute</a>
-                    <a href="/register">Editions</a>
+                    <a href="/articles">Articles</a>
+                    <a href="/editions">Editions</a>
                 </p>
                 <p class="footer-company-name">All Rights Reserved. &copy; 2020  <a href="http://sit.ac.in/html/home.html">Siddaganga Institute of Technology</a></p>
             </div>

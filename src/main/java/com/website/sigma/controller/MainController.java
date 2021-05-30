@@ -4,6 +4,7 @@ import com.website.sigma.model.Member;
 import com.website.sigma.model.MemberArticle;
 import com.website.sigma.model.OpenUser;
 import com.website.sigma.repository.MemberRepository;
+import com.website.sigma.repository.OpenUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,6 +22,9 @@ public class MainController {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Autowired
+    private OpenUserRepository openUserRepository;
+
     @GetMapping("/")
     public String showHomePage() {
         return "home";
@@ -32,7 +36,9 @@ public class MainController {
     }
 
     @GetMapping("/articles")
-    public String showArticlesPage() {
+    public String showArticlesPage(Model model) {
+        List<OpenUser> articles = openUserRepository.findAll();
+        model.addAttribute("articles", articles);
         return "openarticle";
     }
 
@@ -71,6 +77,9 @@ public class MainController {
     @GetMapping("/team")
     public String showTeamPage(Model model) {
         List<Member> teams = memberRepository.findAll();
+        for(Member member : teams) {
+            System.out.println(member.getYear());
+        }
         model.addAttribute("teams", teams);
         return "team";
     }

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>SIGMA | Home</title>
+  <title>SIGMA | Team</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="shortcut icon" href="/mainimages/sigmlogo.jpeg" type="image/x-icon" >
   <link type="text/css"  href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link type="text/css"  href="/style.css" rel="stylesheet">
@@ -58,40 +59,30 @@
 </nav>
 
 
-<section id="home" class="main-banner parallaxie" style="background: url('mainimages/reg_2.jpg')">
-  <div class="heading">
-
-    <h1>SIGMA</h1>
-    <h3 class="cd-headline clip is-full-width">
-      <span>Official Newsletter of CSE Department</span>
-    </h3>
-  </div>
-</section>
 
 <div>
   <br>
   <br>
+  <br>
+  <br>
 </div>
 
-<div class="section-wb">
-  <div class="container">
+<center>
+
+  <div class="container" >
     <div class="section-title text-center">
       <h3><b>Our Team</b></h3>
       <hr>
     </div>
-    <div class="row">
-      <!-- end col -->
+    <div class="row g-3" style="justify-content: center;">
       <div class="col-md-3" th:each="team: ${teams}">
-        <div class="text-center card-box">
-          <div class="member-card pt-2 pb-2">
-            <div class="thumb-lg member-thumb mx-auto">
-              <img th:src="@{${team.image_url}}" class="img-thumbnail" alt="profile-image">
-            </div>
-            <div>
-              <h4 th:text="${team.firstname}">Akash Ranjan</h4>
-              <p class="text-muted" th:text="${team.designation}">Member
-                <span>| </span><b class="text-pink" th:text="${team.year}"></b></p>
-            </div>
+        <div class="card h-100" style="max-width: 160px;">
+          <img th:src="@{${team.image_url}}" style="max-width: 160px; max-height: 195px;"
+               class=" img-thumbnail card-img-top h-100" alt="...">
+          <div class="card-body">
+            <h5 class="card-title" th:text="${team.firstname} + ' ' + ${team.lastname}"></h5>
+            <p class="card-text text-black-50" th:text="${team.designation}"></p>
+            <p class="card-text text-pink" th:text="${team.year}"><b></b></p>
             <ul class="social-links list-inline">
               <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips"
                                               th:href="@{${team.github_url}}" data-original-title="Github"><i
@@ -100,14 +91,51 @@
                                               th:href="@{${team.linkedin_url}}" data-original-title="Twitter"><i
                       class="fa fa-linkedin"></i></a></li>
             </ul>
-
           </div>
         </div>
       </div>
-
     </div>
+    <!-- end row -->
+    <!-- end row -->
   </div>
-</div>
+
+</center>
+
+<!--<div class="section-wb">-->
+<!--  <div class="container">-->
+<!--    <div class="section-title text-center">-->
+<!--      <h3><b>Our Team</b></h3>-->
+<!--      <hr>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--      &lt;!&ndash; end col &ndash;&gt;-->
+<!--      <div class="col-md-3" th:each="team: ${teams}">-->
+<!--        <div class="text-center card-box">-->
+<!--          <div class="member-card pt-2 pb-2">-->
+<!--            <div class="thumb-lg member-thumb mx-auto">-->
+<!--              <img th:src="@{${team.image_url}}" class="img-thumbnail" alt="profile-image">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <h4 th:text="${team.firstname} + ${team.lastname}">Akash Ranjan</h4>-->
+<!--              <p class="text-muted" th:text="${team.designation}"><b></b></p>-->
+<!--              <p class="text-pink" th:text="${team.year}"><b></b></p>-->
+<!--            </div>-->
+<!--            <ul class="social-links list-inline">-->
+<!--              <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips"-->
+<!--                                              th:href="@{${team.github_url}}" data-original-title="Github"><i-->
+<!--                      class="fa fa-github"></i></a></li>-->
+<!--              <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips"-->
+<!--                                              th:href="@{${team.linkedin_url}}" data-original-title="Twitter"><i-->
+<!--                      class="fa fa-linkedin"></i></a></li>-->
+<!--            </ul>-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 <div class="section-wb">
   <div class="container">
@@ -133,9 +161,8 @@
         <p class="footer-company-name"><h1 style="color: bisque;"><b>Sigma Newsletter</b></h1></p>
         <p class="footer-links">
           <a href="/">Home</a>
-          <a href="/register">Articles</a>
-          <a href="/register">Contribute</a>
-          <a href="/register">Editions</a>
+          <a href="/articles">Articles</a>
+          <a href="/editions">Editions</a>
         </p>
         <p class="footer-company-name">All Rights Reserved. &copy; 2020  <a href="http://sit.ac.in/html/home.html">Siddaganga Institute of Technology</a></p>
       </div>
