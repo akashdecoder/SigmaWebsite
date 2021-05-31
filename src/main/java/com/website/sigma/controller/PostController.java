@@ -100,8 +100,8 @@ public class PostController {
     @PostMapping("/registered")
     public String registerFaculty(@Valid Member member, BindingResult result, Model model,
                                   HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {
-        String c_pass = request.getParameter("c_password");
-        String err = validationService.validatePassword(member, c_pass);
+//        String c_pass = request.getParameter("c_password");
+        String err = validationService.validatePassword(member);
         if(!err.isEmpty()) {
             ObjectError error = new ObjectError("validationError", err);
             result.addError(error);

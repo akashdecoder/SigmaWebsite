@@ -31,13 +31,16 @@ public class Member {
     @Column(nullable = false, length = 64)
     private String password;
 
+    @Column(nullable = false, length = 4)
+    private int tier;
+
     @Column(length = 64)
     private String resetpasswordtoken;
 
-    @Column(length = 30)
+    @Column(length = 64, nullable = false)
     private String designation;
 
-    @Column(length = 10)
+    @Column(length = 10, nullable = false)
     private String year;
 
     @Column(length = 64)
@@ -46,7 +49,7 @@ public class Member {
     @Column(length = 64)
     private String linkedin_url;
 
-    @Column(length = 1500)
+    @Column(length = 1500, nullable = false)
     private String image_url;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -60,13 +63,14 @@ public class Member {
     public Member() {
     }
 
-    public Member(String firstname, String lastname, String usn, String semester, String email, String password, String resetpasswordtoken, String designation, String year, String github_url, String linkedin_url, String image_url) {
+    public Member(String firstname, String lastname, String usn, String semester, String email, String password, int tier, String resetpasswordtoken, String designation, String year, String github_url, String linkedin_url, String image_url) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.usn = usn;
         this.semester = semester;
         this.email = email;
         this.password = password;
+        this.tier = tier;
         this.resetpasswordtoken = resetpasswordtoken;
         this.designation = designation;
         this.year = year;
@@ -129,6 +133,14 @@ public class Member {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getTier() {
+        return tier;
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
     }
 
     public Set<Roles> getRoles() {

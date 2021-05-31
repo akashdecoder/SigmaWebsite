@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 @Service
 public class ValidationService {
-    public String validatePassword(Member member, String c_password) {
+    public String validatePassword(Member member) {
         String message = "";
         String regex = "^(?=.*[0-9])"
                 + "(?=.*[a-z])(?=.*[A-Z])"
@@ -18,9 +18,6 @@ public class ValidationService {
         Matcher matcher = pattern.matcher(member.getPassword());
         if(matcher.matches() != true) {
             message = "! Password is not in proper format !";
-        }
-        if(c_password.compareTo(member.getPassword()) != 0) {
-            message = "! Password does not match !";
         }
         return message;
     }

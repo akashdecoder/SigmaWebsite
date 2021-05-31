@@ -80,15 +80,13 @@
       </div>
       <div class="col-md-6">
         <div class="form-floating">
-          <input placeholder="Github" id="github" class="form-control" th:field="*{github_url}"
-                 required>
+          <input placeholder="Github" id="github" class="form-control" th:field="*{github_url}">
           <label for="github">Github Url</label>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-floating">
-          <input placeholder="LinkedIn" id="linkedin" class="form-control" th:field="*{linkedin_url}"
-                 required>
+          <input placeholder="LinkedIn" id="linkedin" class="form-control" th:field="*{linkedin_url}">
           <label for="linkedin">LinkedIn Url</label>
         </div>
       </div>
@@ -106,7 +104,13 @@
           <label for= "designation">Designation in Sigma</label>
         </div>
       </div>
-
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="Tier" id="tier" class="form-control" th:field="*{tier}"
+                 required>
+          <label for= "tier">Tier</label>
+        </div>
+      </div>
       <div class="col-md-6">
         <div class="form-floating">
           <input placeholder="Password" type="password" id="password" class="form-control"
@@ -116,14 +120,14 @@
           </label>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="form-floating">
-          <input placeholder="Confirm Password" type="password" id="c_password" class="form-control" name="c_password"
-                 required>
-          <label for="c_password">Confirm Password
-          </label>
-        </div>
-      </div>
+<!--      <div class="col-md-6">-->
+<!--        <div class="form-floating">-->
+<!--          <input placeholder="Confirm Password" type="password" id="c_password" class="form-control" name="c_password"-->
+<!--                 required>-->
+<!--          <label for="c_password">Confirm Password-->
+<!--          </label>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="col-md-12 text-center" th:if="${#fields.hasErrors('global')}">
         <b><p style="color: red" th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" /></b>
       </div>

@@ -13,7 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+class SortById implements Comparator<Member> {
+    public int compare(Member a, Member b) {
+        return (int) (a.getMember_id() - b.getMember_id());
+    }
+}
 
 @Controller
 public class MainController {
@@ -80,6 +88,7 @@ public class MainController {
         for(Member member : teams) {
             System.out.println(member.getYear());
         }
+        Collections.sort(teams, new SortById());
         model.addAttribute("teams", teams);
         return "team";
     }
