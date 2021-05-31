@@ -20,9 +20,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-class SortById implements Comparator<Member> {
+class SortByTier implements Comparator<Member> {
     public int compare(Member a, Member b) {
-        return (int) (a.getMember_id() - b.getMember_id());
+        return (int) (a.getTier() - b.getTier());
     }
 }
 
@@ -97,7 +97,7 @@ public class MainController {
         for(Member member : teams) {
             System.out.println(member.getYear());
         }
-        Collections.sort(teams, new SortById());
+        Collections.sort(teams, new SortByTier());
         model.addAttribute("teams", teams);
         return "team";
     }
