@@ -3,11 +3,14 @@ package com.website.sigma.controller;
 import com.website.sigma.model.Member;
 import com.website.sigma.model.MemberArticle;
 import com.website.sigma.model.OpenUser;
+import com.website.sigma.repository.MemberCrudRepository;
 import com.website.sigma.repository.MemberRepository;
 import com.website.sigma.repository.OpenUserRepository;
+import com.website.sigma.security.MemberDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +36,9 @@ public class MainController {
     @Autowired
     private OpenUserRepository openUserRepository;
 
+    @Autowired
+    private MemberCrudRepository memberCrudRepository;
+
     @GetMapping("/")
     public String showHomePage() {
         return "home";
@@ -57,7 +63,10 @@ public class MainController {
     }
 
     @GetMapping("/member_article")
-    public String showMemberUploadArticlesPage(Model model) {
+    public String showMemberUploadArticlesPage(@AuthenticationPrincipal MemberDetails loggedMember,Model model) {
+        String email = loggedMember.getUsername();
+        List<Member> members = memberRepository.findAllByEmail(email);
+        model.addAttribute("members", members);
         model.addAttribute("memberArticle", new MemberArticle());
         return "uploadarticle";
     }
@@ -91,5 +100,13 @@ public class MainController {
         Collections.sort(teams, new SortById());
         model.addAttribute("teams", teams);
         return "team";
+    }
+
+    @GetMapping("/account/{member_id}")
+    public String showUpdateForm(@AuthenticationPrincipal MemberDetails loggedMember, Model model) {
+        String email = loggedMember.getUsername();
+        Member member = memberCrudRepository.getMembersByEmail(email);
+        model.addAttribute("member", member);
+        return "update_member";
     }
 }

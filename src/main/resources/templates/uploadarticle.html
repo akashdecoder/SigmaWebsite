@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title >SIGMA | Upload Article Members</title>
+    <title> SIGMA | Member</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,9 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="/style.css" rel="stylesheet">
 </head>
-<body>
+<body sec:authorize="hasAnyAuthority('MEMBER')">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" sec:authorize="hasAnyAuthority('MEMBER')">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><b>Hello, <b sec:authentication="principal.fullName"></b></b></a>
         <form class="d-flex" name="logoutForm" th:hidden="true" method="post" th:action="@{/logged_out}">
@@ -39,6 +39,57 @@
 <div class="container">
     <br>
     <br>
+    <div class="section-title text-center">
+        <h3><b style="font-size: 4vw;">Member Profile</b></h3>
+        <hr style="color: black;">
+    </div>
+
+    <div class="row" th:each="member: ${members}" style="text-align: center">
+
+        <div class="col-md-12">
+            <img th:src="@{${member.image_url}}" style="max-width: 160px; max-height: 195px;"
+                 class=" img-thumbnail card-img-top h-100" alt="...">
+        </div>
+        <br>
+        <br>
+        <div class="col-md-12">
+            <h3 style="color: black" th:text="'Name: ' + ${member.firstname} + ' ' + ${member.lastname}"></h3>
+        </div>
+        <div class="col-md-12">
+            <h3 style="color: black" th:text="'Year: ' + ${member.year}"></h3>
+        </div>
+        <div  class="col-md-12">
+            <h3 style="color: black" th:text="'USN: ' + ${member.usn}"></h3>
+        </div>
+        <div  class="col-md-12">
+            <h3 style="color: black" th:text="'Email: ' + ${member.email}"></h3>
+        </div>
+        <div class="col-md-12">
+            <h3 style="color: black" th:text="'Sigma Designation: ' + ${member.designation}"></h3>
+        </div>
+        <div class="col-md-12">
+            <h3 style="color: black" th:text="'Member Tier: ' + ${member.tier}"></h3>
+        </div>
+        <div class="col-md-12">
+            <h3 style="color: black" th:text="'Linkedin: ' + ${member.linkedin_url}"></h3>
+        </div>
+        <div class="col-md-12">
+            <h3 style="color: black" th:text="'Github: ' + ${member.github_url}"></h3>
+        </div>
+        <div class="col-md-12">
+            <a class="btn btn-primary hvr-bounce-to-top btn-lg"
+               th:href="@{/account/{member_id}(member_id=${member.member_id})}"
+               style="color: whitesmoke;"><b>Update Profile</b></a>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
     <div class="section-title text-center">
         <h3><b style="font-size: 4vw;">Sigma Member Articles Upload</b></h3>
         <hr style="color: black;">
@@ -115,7 +166,8 @@
             </div>
             <div class="col-md-12">
                 <br>
-                <button type="submit" class="btn btn-success hvr-bounce-to-top btn-lg" value="Sign Up"><b>Submit</b></button>
+                <button type="submit" class="btn btn-success hvr-bounce-to-top btn-lg"
+                        value="Sign Up"><b>Submit Your Article</b></button>
                 <br>
             </div>
         </div>
@@ -125,6 +177,18 @@
 
 <br>
 <br>
+
+<div class="copyrights">
+    <div class="container">
+        <div class="footer-distributed">
+            <a href="#"><img src="" alt="" /></a>
+            <div class="footer-center">
+                <p class="footer-company-name"><h1 style="color: bisque;"><b>Sigma Newsletter</b></h1></p>
+                <p class="footer-company-name">All Rights Reserved. &copy; 2020  <a href="http://sit.ac.in/html/home.html">Siddaganga Institute of Technology</a></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <a href="#" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>

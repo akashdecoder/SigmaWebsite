@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+  <title>SIGMA | Update Profile</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <link rel="shortcut icon" href="/mainimages/sigmlogo.jpeg" type="image/x-icon" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link  href="/style.css" rel="stylesheet">
+</head>
+<body sec:authorize="hasAnyAuthority('MEMBER')">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><b>Hello, <b sec:authentication="principal.fullName"></b></b></a>
+    <form class="d-flex" name="logoutForm" th:hidden="true" method="post" th:action="@{/logged_out}">
+      <input name="" class="btn btn-outline-danger" type="submit" value="Logout"></input>
+    </form>
+  </div>
+  </div>
+</nav>
+<br>
+<br>
+
+
+<div>
+  <br>
+  <br>
+</div>
+
+<div class="container">
+  <br>
+  <br>
+  <div class="section-title text-center">
+    <h3><b style="font-size: 4vw;">Sign Up</b></h3>
+    <hr>
+  </div>
+  <br>
+
+  <form class="form-group text-center" method="post"
+        th:action="@{/updated/{member_id}(member_id=${member.member_id})}"
+        th:object="${member}">
+    <div th:if="${warning != null}" class="alert alert-danger text-center">[[${warning}]]</div>
+    <div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="First Name" id="firstname" class="form-control" th:field="*{firstname}"
+                 required>
+          <label for="firstname">First Name</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="Last Name" id="lastname" class="form-control" th:field="*{lastname}"
+                 required>
+          <label for="lastname">Last Name</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="Email" name="email" type="email" id="email" class="form-control"
+                 th:field="*{email}"
+                 required>
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="USN" id="usn" class="form-control" th:field="*{usn}"
+                 required>
+          <label for="usn">USN</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="Year" id="year" class="form-control" th:field="*{year}"
+                 required>
+          <label for="year">Year</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="Semester" id="semester" class="form-control" th:field="*{semester}"
+                 required>
+          <label for="semester">Semester</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="Github" id="github" class="form-control" th:field="*{github_url}">
+          <label for="github">Github Url</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="LinkedIn" id="linkedin" class="form-control" th:field="*{linkedin_url}">
+          <label for="linkedin">LinkedIn Url</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="Image Url" id="imageurl" class="form-control" th:field="*{image_url}"
+                 required>
+          <label for="imageurl">Image Url (Google photos link: size 315x315)</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="Designation" id="designation" class="form-control" th:field="*{designation}"
+                 required>
+          <label for= "designation">Designation in Sigma</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="Tier" id="tier" class="form-control" th:field="*{tier}"
+                 required>
+          <label for= "tier">Tier</label>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+          <input placeholder="Password" type="password" id="password" class="form-control"
+                 th:field="*{password}"
+                 required>
+          <label for="password">Password (ex: Sit@2020)
+          </label>
+        </div>
+      </div>
+      <!--      <div class="col-md-6">-->
+      <!--        <div class="form-floating">-->
+      <!--          <input placeholder="Confirm Password" type="password" id="c_password" class="form-control" name="c_password"-->
+      <!--                 required>-->
+      <!--          <label for="c_password">Confirm Password-->
+      <!--          </label>-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <div class="col-md-12 text-center" th:if="${#fields.hasErrors('global')}">
+        <b><p style="color: red" th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" /></b>
+      </div>
+      <div class="col-md-12">
+        <br>
+        <button type="submit" class="btn btn-success hvr-bounce-to-top btn-lg"><b>Update</b></button>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="copyrights">
+  <div class="container">
+    <div class="footer-distributed">
+      <a href="#"><img src="" alt="" /></a>
+      <div class="footer-center">
+        <p class="footer-company-name"><h1 style="color: bisque;"><b>Sigma Newsletter</b></h1></p>
+        <p class="footer-company-name">All Rights Reserved. &copy; 2020  <a href="http://sit.ac.in/html/home.html">Siddaganga Institute of Technology</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/js/all.js"></script>
+<script type="text/javascript" src="/js/jquery.mobile.customized.min.js"></script>
+<script type="text/javascript" src="/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="/js/parallaxie.js"></script>
+<script type="text/javascript" src="/js/headline.js"></script>
+<script type="text/javascript" src="/js/jqBootstrapValidation.js"></script>
+<script type="text/javascript" src="/js/contact_me.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script>
+<script type="text/javascript" src="/js/jquery.vide.js"></script>
+
+</body>
+</html>
