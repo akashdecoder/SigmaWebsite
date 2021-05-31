@@ -10,11 +10,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link  href="/style.css" rel="stylesheet">
 </head>
-<body style="background: #ff4b4b">
+<body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><b>Sigma SIT</b></a>
+        <a class="navbar-brand" href="/"><img class="img-fluid" src="/mainimages/sigmlogo.png" alt="" />&emsp;
+            <b>Sigma SIT</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,92 +49,96 @@
     <br>
 </div>
 
-<div class="container">
-    <br>
-    <br>
-    <div class="section-title text-center">
-        <h3><b style="font-size: 4vw; color: whitesmoke" >Open Contribute</b></h3>
-        <hr style="color: black;">
-    </div>
 
-    <form class="form-group text-center" method="post"
-          th:action="@{/contributed}"
-          th:object="${openUser}">
-        <div th:if="${warning != null}" class="alert alert-danger text-center">[[${warning}]]</div>
-        <div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
-        <div class="row g-3">
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input placeholder="First Name" id="firstname" class="form-control" th:field="*{firstname}"
-                           required>
-                    <label for="firstname">First Name</label>
+<div class="section-wb">
+    <div class="container">
+        <br>
+        <br>
+        <div class="section-title text-center">
+            <h3><b style="font-size: 4vw;" >Open Contribute</b></h3>
+            <hr>
+        </div>
+
+        <form class="form-group text-center" method="post"
+              th:action="@{/contributed}"
+              th:object="${openUser}">
+            <div th:if="${warning != null}" class="alert alert-danger text-center">[[${warning}]]</div>
+            <div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input placeholder="First Name" id="firstname" class="form-control" th:field="*{firstname}"
+                               required>
+                        <label for="firstname">First Name</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input placeholder="Last Name" id="lastname" class="form-control" th:field="*{lastname}"
-                           required>
-                    <label for="lastname">Last Name</label>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input placeholder="Last Name" id="lastname" class="form-control" th:field="*{lastname}"
+                               required>
+                        <label for="lastname">Last Name</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input placeholder="USN" id="usn" class="form-control" th:field="*{usn}" required>
-                    <label for="usn">USN</label>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input placeholder="USN" id="usn" class="form-control" th:field="*{usn}" required>
+                        <label for="usn">USN</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input placeholder="Semester" id="semester" class="form-control" th:field="*{semester}" required>
-                    <label for="semester">Semester</label>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input placeholder="Semester" id="semester" class="form-control" th:field="*{semester}" required>
+                        <label for="semester">Semester</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <input placeholder="Title" id="branch" class="form-control" th:field="*{title}"
-                           required>
-                    <label for="branch">Title</label>
+                <div class="col-md-12">
+                    <div class="form-floating">
+                        <input placeholder="Title" id="branch" class="form-control" th:field="*{title}"
+                               required>
+                        <label for="branch">Title</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-floating">
+                <div class="col-md-12">
+                    <div class="form-floating">
                         <textarea minlength="200" maxlength="500" style="resize: none; height: 200px;" rows="6"
                                   cols="50" name="introduction"
                                   placeholder="Introduction (Length in range from 200 to 500)"
                                   id="introduction" class="form-control" required></textarea>
-                    <label for="introduction">Introduction (Length in range from 200 to 500)</label>
+                        <label for="introduction">Introduction (Length in range from 200 to 500)</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating">
+                <div class="col-md-6">
+                    <div class="form-floating">
                         <textarea minlength="500" maxlength="1500" style="resize: none; height: 500px;" rows="6" cols="50" name="body1" placeholder="Body1" id="body1" class="form-control" required></textarea>
-                    <label for="body1">Body1 (Length in range from 500 to 1500)</label>
+                        <label for="body1">Body1 (Length in range from 500 to 1500)</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating">
+                <div class="col-md-6">
+                    <div class="form-floating">
                         <textarea minlength="500" maxlength="1500" style="resize: none; height: 500px;" rows="6" cols="50" name="body2" placeholder="Body2" id="body2" class="form-control"></textarea>
-                    <label for="body2">Body2 (Length in range from 500 to 1500) (Optional, if only exceeds one paragraph) </label>
+                        <label for="body2">Body2 (Length in range from 500 to 1500) (Optional, if only exceeds one paragraph) </label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-floating">
+                <div class="col-md-12">
+                    <div class="form-floating">
                         <textarea minlength="200" maxlength="500" style="resize: none; height: 200px;" rows="6" cols="50" name="conclusion" placeholder="Conclusion" id="conclusion" class="form-control" required></textarea>
-                    <label for="conclusion">Conclusion (Length in range from 200 to 500)</label>
+                        <label for="conclusion">Conclusion (Length in range from 200 to 500)</label>
+                    </div>
+                </div>
+                <div class="col-md-12 text-center" th:if="${#fields.hasErrors('global')}">
+                    <b><p style="color: red" th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" /></b>
+                </div>
+                <div class="col-md-12">
+                    <br>
+                    <button type="submit" class="btn btn-success hvr-bounce-to-top btn-lg"
+                            value="Submit Your Article"><b>Submit Your Article</b></button>
+                    <br>
                 </div>
             </div>
-            <div class="col-md-12 text-center" th:if="${#fields.hasErrors('global')}">
-                <b><p style="color: red" th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" /></b>
-            </div>
-            <div class="col-md-12">
-                <br>
-                <button type="submit" class="btn btn-success hvr-bounce-to-top btn-lg"
-                        value="Submit Your Article"><b>Submit Your Article</b></button>
-                <br>
-            </div>
-        </div>
-    </form>
-    <br>
+        </form>
+        <br>
+    </div>
+
 </div>
 
 <br>

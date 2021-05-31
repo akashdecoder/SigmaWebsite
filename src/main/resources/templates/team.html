@@ -17,7 +17,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><b>Sigma SIT</b></a>
+    <a class="navbar-brand" href="/"><img class="img-fluid" src="/mainimages/sigmlogo.png" alt="" />&emsp;<b>Sigma SIT</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -76,8 +76,8 @@
     </div>
     <div class="row g-3" style="justify-content: center;">
       <div class="col-md-3" th:each="team: ${teams}">
-        <div class="card h-100" style="max-width: 160px;">
-          <img th:src="@{${team.image_url}}" style="max-width: 160px; max-height: 195px;"
+        <div class="card h-100" style="max-width: 260px;">
+          <img th:src="@{${team.image_url}}" style="max-width: 260px; max-height: 295px;"
                class=" img-thumbnail card-img-top h-100" alt="...">
           <div class="card-body">
             <h5 class="card-title" th:text="${team.firstname} + ' ' + ${team.lastname}"></h5>
