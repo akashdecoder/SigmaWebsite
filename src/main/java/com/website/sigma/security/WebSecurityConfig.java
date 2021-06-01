@@ -50,14 +50,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/**", "/login", "/team").permitAll()
-                .antMatchers("/member_article", "/account/**", "/update***", "/updated/**").hasRole("MEMBER")
+                .antMatchers("/memberdashboard",
+                        "/profile",
+                        "/member_article",
+                        "/notifications",
+                        "/account/**",
+                        "/update***",
+                        "/updated/**",
+                        "/sentmessage").hasRole("MEMBER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .loginProcessingUrl("/loggedin")
-                .defaultSuccessUrl("/member_article");
+                .defaultSuccessUrl("/memberdashboard");
 
         http.logout().logoutUrl("/logged_out");
     }

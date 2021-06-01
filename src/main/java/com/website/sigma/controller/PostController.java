@@ -1,15 +1,11 @@
 package com.website.sigma.controller;
 
-import com.website.sigma.model.Member;
-import com.website.sigma.model.MemberArticle;
-import com.website.sigma.model.OpenUser;
-import com.website.sigma.model.Roles;
-import com.website.sigma.repository.MemberArticleRepository;
-import com.website.sigma.repository.MemberRepository;
-import com.website.sigma.repository.OpenUserRepository;
-import com.website.sigma.repository.RolesRepository;
+import com.website.sigma.model.*;
+import com.website.sigma.repository.*;
+import com.website.sigma.security.MemberDetails;
 import com.website.sigma.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +38,9 @@ public class PostController {
 
     @Autowired
     private ValidationService validationService;
+
+    @Autowired
+    private MessagesRepository messagesRepository;
 
     @PostMapping("/contributed")
     public String contributeArticle(@Valid OpenUser openUser, BindingResult result, Model model,
@@ -120,5 +119,21 @@ public class PostController {
                 " " +
                 "to continue.");
         return "redirect:/register";
+    }
+
+    @PostMapping("/sentmessage")
+    public String sendMessage(@Valid Messages messages, @AuthenticationPrincipal MemberDetails loggedMember,
+                              BindingResult result, Model model,
+                              HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {
+        String message = request.getParameter("message");
+
+        if(result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("warning", "Error occured");
+            return"redirect:/memberdashboard";
+        }
+        messages.setNotifications(message);
+        messagesRepository.save(messages);
+        redirectAttributes.addFlashAttribute("message", loggedMember.getUsername() + " your message has been sent");
+        return "redirect:/memberdashboard";
     }
 }

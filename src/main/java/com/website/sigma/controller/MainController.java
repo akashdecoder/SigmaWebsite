@@ -2,9 +2,11 @@ package com.website.sigma.controller;
 
 import com.website.sigma.model.Member;
 import com.website.sigma.model.MemberArticle;
+import com.website.sigma.model.Messages;
 import com.website.sigma.model.OpenUser;
 import com.website.sigma.repository.MemberCrudRepository;
 import com.website.sigma.repository.MemberRepository;
+import com.website.sigma.repository.MessagesRepository;
 import com.website.sigma.repository.OpenUserRepository;
 import com.website.sigma.security.MemberDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,9 @@ public class MainController {
     @Autowired
     private MemberCrudRepository memberCrudRepository;
 
+    @Autowired
+    private MessagesRepository messagesRepository;
+
     @GetMapping("/")
     public String showHomePage() {
         return "home";
@@ -62,11 +67,24 @@ public class MainController {
         return "uploadopen";
     }
 
-    @GetMapping("/member_article")
-    public String showMemberUploadArticlesPage(@AuthenticationPrincipal MemberDetails loggedMember,Model model) {
+    @GetMapping("/memberdashboard")
+    public String showMemberDashboard(@AuthenticationPrincipal MemberDetails loggedMember,Model model) {
+        model.addAttribute("messages", new Messages());
+        List<Messages> chats = messagesRepository.findAll();
+        model.addAttribute("chats", chats);
+        return "dashboard";
+    }
+
+    @GetMapping("/profile")
+    public String showMemberProfile(@AuthenticationPrincipal MemberDetails loggedMember,Model model) {
         String email = loggedMember.getUsername();
         List<Member> members = memberRepository.findAllByEmail(email);
         model.addAttribute("members", members);
+        return "memberprofile";
+    }
+
+    @GetMapping("/uploadarticle")
+    public String showMemberUploadArticle(Model model) {
         model.addAttribute("memberArticle", new MemberArticle());
         return "uploadarticle";
     }
