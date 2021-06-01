@@ -58,52 +58,45 @@
     <h3><b style="font-size: 4vw;">Member Profile</b></h3>
     <hr style="color: black;">
   </div>
-
   <div class="row" th:each="member: ${members}">
-
-    <div class="col-md-6" style="text-align: center;">
+    <div class="col-md-12" style="text-align: center;">
       <img th:src="@{${member.image_url}}"
            class=" img-thumbnail card-img-top h-100" alt="..." style="max-width: 260px; ">
     </div>
-    <br>
-    <br>
-    <div class="col-md-6">
-      <div class="col-md-12">
-        <h2 style="color: black" th:text="'Name: ' + ${member.firstname} + ' ' + ${member.lastname}"></h2>
-      </div>
-      <div class="col-md-12">
-        <h2 style="color: black" th:text="'Year: ' + ${member.year}"></h2>
-      </div>
-      <div  class="col-md-12">
-        <h2 style="color: black" th:text="'USN: ' + ${member.usn}"></h2>
-      </div>
-      <div  class="col-md-12">
-        <h2 style="color: black" th:text="'Email: ' + ${member.email}"></h2>
-      </div>
-      <div class="col-md-12">
-        <h2 style="color: black" th:text="'Sigma Designation: ' + ${member.designation}"></h2>
-      </div>
-      <div class="col-md-12">
-        <h2 style="color: black" th:text="'Member Tier: ' + ${member.tier}"></h2>
-      </div>
-      <div class="col-md-12">
-        <h2 style="color: black" th:text="'Linkedin: ' + ${member.linkedin_url}"></h2>
-      </div>
-      <div class="col-md-12">
-        <h2 style="color: black" th:text="'Github: ' + ${member.github_url}"></h2>
-      </div>
-      <br>
-      <br>
-      <div class="col-md-12">
-        <a class="btn btn-primary hvr-bounce-to-top btn-lg"
-           th:href="@{/account/{member_id}(member_id=${member.member_id})}"
-           style="color: whitesmoke;"><b>Update Profile</b></a>
-      </div>
-
+    <div class="col-md-12">
+      <h2 style="color: black" th:text="'Name: ' + ${member.firstname} + ' ' + ${member.lastname}"></h2>
     </div>
-
+    <div class="col-md-12">
+      <h2 style="color: black" th:text="'Year: ' + ${member.year}"></h2>
+    </div>
+    <div  class="col-md-12">
+      <h2 style="color: black" th:text="'USN: ' + ${member.usn}"></h2>
+    </div>
+    <div  class="col-md-12">
+      <h2 style="color: black" th:text="'Email: ' + ${member.email}"></h2>
+    </div>
+    <div class="col-md-12">
+      <h2 style="color: black" th:text="'Sigma Designation: ' + ${member.designation}"></h2>
+    </div>
+    <div class="col-md-12">
+      <h2 style="color: black" th:text="'Member Tier: ' + ${member.tier}"></h2>
+    </div>
+    <div class="col-md-12">
+      <h2 style="color: black" th:text="'Linkedin: ' + ${member.linkedin_url}"></h2>
+    </div>
+    <div class="col-md-12">
+      <h2 style="color: black" th:text="'Github: ' + ${member.github_url}"></h2>
+    </div>
+    <br>
+    <br>
+    <div class="col-md-12">
+      <a class="btn btn-primary hvr-bounce-to-top btn-lg"
+         th:href="@{/account/{member_id}(member_id=${member.member_id})}"
+         style="color: whitesmoke;"><b>Update Profile</b></a>
+    </div>
+    <br>
+    <br>
   </div>
-
   <br>
   <br>
   <br>

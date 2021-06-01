@@ -16,10 +16,28 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><b>Hello, <b sec:authentication="principal.fullName"></b></b></a>
-    <form class="d-flex" name="logoutForm" th:hidden="true" method="post" th:action="@{/logged_out}">
-      <input name="" class="btn btn-outline-danger" type="submit" value="Logout"></input>
-    </form>
-  </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/memberdashboard"><b>My Dashboard</b></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/profile" style="color: black;">My Profile</a></li>
+            <li><a class="dropdown-item" href="/uploadarticle" style="color: black;">Upload Article</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" name="logoutForm" th:hidden="true" method="post" th:action="@{/logged_out}">
+        <input name="" class="btn btn-outline-danger" type="submit" value="Logout"></input>
+      </form>
+    </div>
   </div>
 </nav>
 <br>
