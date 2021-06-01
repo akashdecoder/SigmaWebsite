@@ -107,14 +107,7 @@
             <div class="row g-3">
                 <div class="col-md-12">
                     <div class="form-floating">
-                        <input placeholder="First Name" id="firstname" class="form-control" th:field="*{name}"
-                               required>
-                        <label for="firstname">First Name</label>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-floating">
-                        <textarea maxlength="500" style="resize: none; height: 200px;" rows="6"
+                        <textarea maxlength="2500" style="resize: none; height: 200px;" rows="6"
                                   cols="50" name="message"
                                   placeholder="Introduction (Length in range from 200 to 500)"
                                   id="message" class="form-control" required></textarea>
@@ -145,17 +138,12 @@
         <div class="row" th:each="chat: ${chats}">
             <br>
             <br>
-            <div class="col-md-6">
-                <div class="col-md-12">
-                    <h2 style="color: black" th:text="${chat.name} + ': ' + ${chat.notifications}"></h2>
-                </div>
-
+            <div class="col-md-12">
+                <h2 style="color: black" th:text="${chat.name} + ': ' + ${chat.notifications}"
+                    th:style="${chat.n_id} % 2 == 0 ? 'color: #33B0FF' : 'color: #F8502C'"></h2>
             </div>
-
         </div>
-
     </div>
-
     <br>
     <br>
 </div>

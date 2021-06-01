@@ -131,7 +131,9 @@ public class PostController {
             redirectAttributes.addFlashAttribute("warning", "Error occured");
             return"redirect:/memberdashboard";
         }
+        Member member = memberRepository.findByEmail(loggedMember.getUsername());
         messages.setNotifications(message);
+        messages.setName(member.getFirstname());
         messagesRepository.save(messages);
         redirectAttributes.addFlashAttribute("message", loggedMember.getUsername() + " your message has been sent");
         return "redirect:/memberdashboard";
