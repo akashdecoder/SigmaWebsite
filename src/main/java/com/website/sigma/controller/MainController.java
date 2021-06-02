@@ -111,9 +111,6 @@ public class MainController {
     @GetMapping("/team")
     public String showTeamPage(Model model) {
         List<Member> teams = memberRepository.findAll();
-        for(Member member : teams) {
-            System.out.println(member.getYear());
-        }
         Collections.sort(teams, new SortByTier());
         model.addAttribute("teams", teams);
         return "team";

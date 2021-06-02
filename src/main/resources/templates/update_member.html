@@ -56,7 +56,7 @@
   <br>
   <br>
   <div class="section-title text-center">
-    <h3><b style="font-size: 4vw;">Sign Up</b></h3>
+    <h3><b>Update Profile</b></h3>
     <hr>
   </div>
   <br>
@@ -152,14 +152,6 @@
           </label>
         </div>
       </div>
-      <!--      <div class="col-md-6">-->
-      <!--        <div class="form-floating">-->
-      <!--          <input placeholder="Confirm Password" type="password" id="c_password" class="form-control" name="c_password"-->
-      <!--                 required>-->
-      <!--          <label for="c_password">Confirm Password-->
-      <!--          </label>-->
-      <!--        </div>-->
-      <!--      </div>-->
       <div class="col-md-12 text-center" th:if="${#fields.hasErrors('global')}">
         <b><p style="color: red" th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error" /></b>
       </div>

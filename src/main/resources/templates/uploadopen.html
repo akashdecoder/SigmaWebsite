@@ -43,6 +43,9 @@
                     <a class="nav-link" href="/queries"><b>Queries</b></a>
                 </li>
             </ul>
+            <form class="d-flex" name="logoutForm" th:hidden="true" method="get" th:action="@{/login}">
+                <button name="" class="btn btn-success" style="color: white" type="submit"><b>Member Login</b></button>
+            </form>
         </div>
     </div>
 </nav>
@@ -61,7 +64,7 @@
         <br>
         <br>
         <div class="section-title text-center">
-            <h3><b style="font-size: 4vw;" >Open Contribute</b></h3>
+            <h3><b>Open Contribute</b></h3>
             <hr>
         </div>
 

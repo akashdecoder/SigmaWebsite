@@ -43,6 +43,9 @@
                     <a class="nav-link" href="/queries">Queries</a>
                 </li>
             </ul>
+            <form class="d-flex" name="logoutForm" th:hidden="true" method="get" th:action="@{/login}">
+                <button name="" class="btn btn-success" style="color: white" type="submit"><b>Member Login</b></button>
+            </form>
         </div>
     </div>
 </nav>
