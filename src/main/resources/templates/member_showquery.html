@@ -70,35 +70,37 @@
         <div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
         <br>
         <br>
-        <table  class="table table-striped table-bordered table-responsive-md">
-            <thead class="thead-dark">
-            <tr>
-                <th>ID</th>
-                <th>Questions</th>
-                <th>Answers</th>
-                <th>Status</th>
-                <th>Action</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="" th:each="query: ${queries}">
-                <td style="color: black" th:text="${query.q_id}"></td>
-                <td style="color: black" th:text="${query.question}"></td>
-                <td style="color: black" th:text="${query.answer}"></td>
-                <td style="color: black"
-                    th:style="${query.status} == 'Answered' ? 'color: green' : 'color: red'"
-                    th:text="${query.status}"></td>
-                <td><a style="color: white" class="btn btn-warning btn-lg"
-                       th:href="@{/query/{q_id}(q_id=${query.q_id})}"
-                       th:text="${query.status} == 'Answered' ? 'Update' : 'Answer'">
-                </a></td>
-                <td><a style="color: white" class="btn btn-danger btn-lg"
-                       th:href="@{/delete/{q_id}(q_id=${query.q_id})}">Delete
-                </a></td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table  class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Questions</th>
+                    <th>Answers</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="" th:each="query: ${queries}">
+                    <td style="color: black" th:text="${query.q_id}"></td>
+                    <td style="color: black" th:text="${query.question}"></td>
+                    <td style="color: black" th:text="${query.answer}"></td>
+                    <td style="color: black"
+                        th:style="${query.status} == 'Answered' ? 'color: green' : 'color: red'"
+                        th:text="${query.status}"></td>
+                    <td><a style="color: white" class="btn btn-warning btn-lg"
+                           th:href="@{/query/{q_id}(q_id=${query.q_id})}"
+                           th:text="${query.status} == 'Answered' ? 'Update' : 'Answer'">
+                    </a></td>
+                    <td><a style="color: white" class="btn btn-danger btn-lg"
+                           th:href="@{/delete/{q_id}(q_id=${query.q_id})}">Delete
+                    </a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
