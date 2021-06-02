@@ -1,15 +1,10 @@
 package com.website.sigma.controller;
 
-import com.website.sigma.model.Member;
-import com.website.sigma.model.MemberArticle;
-import com.website.sigma.model.Messages;
-import com.website.sigma.model.OpenUser;
-import com.website.sigma.repository.MemberCrudRepository;
-import com.website.sigma.repository.MemberRepository;
-import com.website.sigma.repository.MessagesRepository;
-import com.website.sigma.repository.OpenUserRepository;
+import com.website.sigma.model.*;
+import com.website.sigma.repository.*;
 import com.website.sigma.security.MemberDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -43,6 +39,9 @@ public class MainController {
 
     @Autowired
     private MessagesRepository messagesRepository;
+
+    @Autowired
+    private QueriesRepository queriesRepository;
 
     @GetMapping("/")
     public String showHomePage() {
@@ -126,5 +125,35 @@ public class MainController {
         Member member = memberCrudRepository.getMembersByEmail(email);
         model.addAttribute("member", member);
         return "update_member";
+    }
+
+    //For users
+    @GetMapping("/queries")
+    public String showQueryconsole(Model model) {
+        List<Queries> queries = queriesRepository.findAllByStatus("Answered");
+        model.addAttribute("queryies", queries);
+        model.addAttribute("queries", new Queries());
+        return "queries";
+    }
+
+    //For members
+    @GetMapping("/studentqueries")
+    public String showQeueries(Model model) {
+        List<Queries> queries = queriesRepository.findAll();
+        model.addAttribute("queries", queries);
+        return "member_showquery";
+    }
+
+    //For members
+    @GetMapping("/query/{q_id}")
+    public String showAnswerWindow(@PathVariable("q_id") long q_id, Model model) {
+        Queries queries = queriesRepository.getById(q_id);
+        model.addAttribute("queries", queries);
+        return "answer_query";
+    }
+
+    @GetMapping("/recruitments")
+    public String showRecruitmentPage() {
+        return "recruitments";
     }
 }

@@ -42,6 +42,9 @@ public class PostController {
     @Autowired
     private MessagesRepository messagesRepository;
 
+    @Autowired
+    private QueriesRepository queriesRepository;
+
     @PostMapping("/contributed")
     public String contributeArticle(@Valid OpenUser openUser, BindingResult result, Model model,
                                     HttpServletRequest request, RedirectAttributes redirectAttributes) {
@@ -137,5 +140,22 @@ public class PostController {
         messagesRepository.save(messages);
         redirectAttributes.addFlashAttribute("message", loggedMember.getUsername() + " your message has been sent");
         return "redirect:/memberdashboard";
+    }
+
+    @PostMapping("/sentQuery")
+    public String sendQuery(@Valid Queries queries, BindingResult result, Model model,
+                              HttpServletRequest request, RedirectAttributes redirectAttributes) throws IOException {
+        String message = request.getParameter("query");
+
+        if(result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("warning", "Error occured");
+            return"redirect:/queries";
+        }
+        queries.setQuestion(message);
+        queries.setStatus("Not Answered");
+        queriesRepository.save(queries);
+        redirectAttributes.addFlashAttribute("message", " Your query has been submitted. Please check the same page " +
+                "after sometime.");
+        return "redirect:/queries";
     }
 }

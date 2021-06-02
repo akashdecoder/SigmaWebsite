@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title> SIGMA | Member</title>
+    <title> SIGMA | Query Console</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,128 +11,88 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="/style.css" rel="stylesheet">
 </head>
-<body sec:authorize="hasAnyAuthority('MEMBER')">
+<body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><b>Hello, <b sec:authentication="principal.fullName"></b></b></a>
+        <a class="navbar-brand" href="/"><img class="img-fluid" src="/mainimages/sigmlogo.png" alt="" /><b>Sigma SIT</b></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/memberdashboard"><b>My Dashboard</b></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Profile
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/profile" style="color: black;">My Profile</a></li>
-                        <li><a class="dropdown-item" href="/uploadarticle" style="color: black;">Upload Article</a></li>
-                    </ul>
+                    <a class="nav-link" aria-current="page" href="/"><b>Home</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/studentqueries"><b>Queries</b></a>
+                    <a class="nav-link" href="/articles"><b>Articles</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/open_article"><b>Contribute</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/editions"><b>Sigma Editions</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/team"><b>Team</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/recruitments"><b>Recruitments</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/queries">Queries</a>
                 </li>
             </ul>
-            <form class="d-flex" name="logoutForm" th:hidden="true" method="post" th:action="@{/logged_out}">
-                <input name="" class="btn btn-outline-danger" type="submit" value="Logout"></input>
-            </form>
         </div>
     </div>
 </nav>
 
+
+<div>
+    <br>
+
+</div>
+
 <div>
     <br>
     <br>
 </div>
-
-<div>
-    <br>
-    <br>
-</div>
-
-<div class="container">
-    <br>
-    <br>
-    <div class="section-title text-center">
-        <h3><b>Your Articles</b></h3>
-        <hr style="color: black;">
-        <br>
-        <br>
-        <h2>!! No articles yet !!</h2>
-    </div>
-
-<!--    <div class="row row-cols-1 row-cols-md-3 g-4">-->
-<!--        <div class="card h-100 col-md-12" th:each="articles: ${articles}">-->
-<!--            <div class="section-title text-center">-->
-<!--                <h3 th:text="${articles.title}"></h3>-->
-<!--                <h2 th:text="${articles.firstname} + ' ' + ${articles.lastname}"></h2>-->
-<!--                <h4 th:text="${articles.usn}"></h4>-->
-<!--            </div>-->
-<!--            <p style="color: black;" th:text="${articles.introduction}">-->
-<!--            </p>-->
-<!--            <p style="color: black;" th:text="${articles.body1}">-->
-<!--            </p>-->
-
-<!--            <p style="color: black;" th:text="${articles.body2}">-->
-<!--            </p>-->
-
-<!--            <p style="color: black;" th:text="${articles.conclusion}">-->
-<!--            </p>-->
-<!--        </div>-->
-<!--    </div>-->
-
-    <br>
-    <br>
-    <br>
-    <br>
-</div>
-
-<br>
-<br>
 
 <div class="section wb">
     <div class="container">
         <div class="section-title text-center">
-            <h3><b>Group Messages</b></h3>
+            <h3><b>Query Console</b></h3>
             <hr>
         </div>
         <br>
         <br>
         <div class="section wb">
             <div class="container">
-                <br>
-                <br>
-                <div class="row" th:each="chat: ${chats}">
+                <div class="row" th:each="query: ${queryies}">
                     <br>
                     <br>
                     <div class="col-md-12">
-                        <h2 style="color: black" th:text="${chat.name} + ': ' + ${chat.notifications}"
-                            th:style="${chat.n_id} % 2 == 0 ? 'color: #33B0FF' : 'color: #F8502C'"></h2>
+                        <h2 style="color: green" th:text="' Question: ' + ${query.question}"></h2>
+                        <h3 style="color: orangered" th:text="' Answer: ' + ${query.answer}"></h3>
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
         </div>
         <br>
         <br>
         <form class="form-group text-center" method="post"
-              th:action="@{/sentmessage}"
-              th:object="${messages}">
+              th:action="@{/sentQuery}"
+              th:object="${queries}">
             <div th:if="${warning != null}" class="alert alert-danger text-center">[[${warning}]]</div>
             <div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
             <div class="row g-3">
                 <div class="col-md-12">
                     <div class="form-floating">
                         <textarea maxlength="2500" style="resize: none; height: 200px;" rows="6"
-                                  cols="50" name="message"
+                                  cols="50" name="query"
                                   placeholder="Introduction (Length in range from 200 to 500)"
-                                  id="message" class="form-control" required></textarea>
-                        <label for="message">Message (Length upto 2500 and limited to one paragraph)</label>
+                                  id="query" class="form-control" required></textarea>
+                        <label for="query">Query (Length upto 2500 and limited to one paragraph)</label>
                     </div>
                 </div>
                 <div class="col-md-12 text-center" th:if="${#fields.hasErrors('global')}">
@@ -157,7 +117,6 @@
 <div class="copyrights">
     <div class="container">
         <div class="footer-distributed">
-            <a href="#"><img src="" alt="" /></a>
             <div class="footer-center">
                 <p class="footer-company-name"><h1 style="color: bisque;"><b>Sigma Newsletter</b></h1></p>
                 <p class="footer-company-name">All Rights Reserved. &copy; 2020  <a href="http://sit.ac.in/html/home.html">Siddaganga Institute of Technology</a></p>
