@@ -68,6 +68,9 @@ public class MainController {
 
     @GetMapping("/memberdashboard")
     public String showMemberDashboard(@AuthenticationPrincipal MemberDetails loggedMember,Model model) {
+        String email = loggedMember.getUsername();
+        List<Member> members = memberRepository.findAllByEmail(email);
+        model.addAttribute("members", members);
         model.addAttribute("messages", new Messages());
         List<Messages> chats = messagesRepository.findAll();
         model.addAttribute("chats", chats);
