@@ -21,4 +21,21 @@ public class ValidationService {
         }
         return message;
     }
+
+    public String validatePasswordFormatByStirng(String password, String c_pass) {
+        String message = "";
+        String regex = "^(?=.*[0-9])"
+                + "(?=.*[a-z])(?=.*[A-Z])"
+                + "(?=.*[@#$%^&+=])"
+                + "(?=\\S+$).{8,20}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        if(matcher.matches() != true) {
+            message = "! Password is not in proper format !";
+        }
+        if(matcher.matches() == true && c_pass.compareTo(password) != 0) {
+            message = "! Password does not match !";
+        }
+        return message;
+    }
 }
