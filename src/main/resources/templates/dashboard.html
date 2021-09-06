@@ -65,28 +65,31 @@
         <hr style="color: black;">
         <br>
         <br>
-        <h2>!! No articles yet !!</h2>
+        <div th:if="${warning != null}" class="alert alert-danger text-center">[[${warning4}]]</div>
+        <div th:if="${message != null}" class="alert alert-success text-center">[[${message4}]]</div>
     </div>
 
-<!--    <div class="row row-cols-1 row-cols-md-3 g-4">-->
-<!--        <div class="card h-100 col-md-12" th:each="articles: ${articles}">-->
-<!--            <div class="section-title text-center">-->
-<!--                <h3 th:text="${articles.title}"></h3>-->
-<!--                <h2 th:text="${articles.firstname} + ' ' + ${articles.lastname}"></h2>-->
-<!--                <h4 th:text="${articles.usn}"></h4>-->
-<!--            </div>-->
-<!--            <p style="color: black;" th:text="${articles.introduction}">-->
-<!--            </p>-->
-<!--            <p style="color: black;" th:text="${articles.body1}">-->
-<!--            </p>-->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="card h-100 col-md-12" th:each="articles: ${articles}">
+            <div class="section-title text-center">
+                <h3 th:text="${articles.title}"></h3>
+                <h2 th:text="${articles.firstname} + ' ' + ${articles.lastname}"></h2>
+                <h4 th:text="${articles.usn}"></h4>
+            </div>
+            <p style="color: black;" th:text="${articles.introduction}">
+            </p>
+            <p style="color: black;" th:text="${articles.body1}">
+            </p>
 
-<!--            <p style="color: black;" th:text="${articles.body2}">-->
-<!--            </p>-->
+            <p style="color: black;" th:text="${articles.body2}">
+            </p>
 
-<!--            <p style="color: black;" th:text="${articles.conclusion}">-->
-<!--            </p>-->
-<!--        </div>-->
-<!--    </div>-->
+            <p style="color: black;" th:text="${articles.conclusion}">
+            </p>
+
+            <a style="color: white" class="btn btn-danger btn-lg" th:href="@{/delete_article/{openuser_id}(openuser_id=${articles.openuser_id})}">Delete</a>
+        </div>
+    </div>
 
     <br>
     <br>

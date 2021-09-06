@@ -43,6 +43,9 @@ public class MainController {
     @Autowired
     private QueriesRepository queriesRepository;
 
+    @Autowired
+    private MemberArticleRepository memberArticleRepository;
+
     @GetMapping("/")
     public String showHomePage() {
         return "home";
@@ -69,11 +72,23 @@ public class MainController {
     @GetMapping("/memberdashboard")
     public String showMemberDashboard(@AuthenticationPrincipal MemberDetails loggedMember,Model model) {
         String email = loggedMember.getUsername();
+
+        Member member = memberRepository.findByEmail(email);
+        System.out.println(member.getUsn());
+
         List<Member> members = memberRepository.findAllByEmail(email);
         model.addAttribute("members", members);
         model.addAttribute("messages", new Messages());
+
+        List<MemberArticle> memberArticles = memberArticleRepository.findAllByUsn(member.getUsn().toUpperCase());
+        for(MemberArticle article : memberArticles) {
+            System.out.println(article.getTitle());
+        }
+        model.addAttribute("articles", memberArticles);
+
         List<Messages> chats = messagesRepository.findAll();
         model.addAttribute("chats", chats);
+
         return "dashboard";
     }
 

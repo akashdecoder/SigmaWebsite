@@ -96,7 +96,7 @@ public class PostController {
         memberArticle.setConclusion(conclusion);
 
         memberArticleRepository.save(memberArticle);
-        return "redirect:/member_article";
+        return "redirect:/uploadarticle";
     }
 
     @PostMapping("/registered")

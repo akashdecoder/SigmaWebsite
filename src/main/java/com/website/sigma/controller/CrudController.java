@@ -1,8 +1,10 @@
 package com.website.sigma.controller;
 
 import com.website.sigma.model.Member;
+import com.website.sigma.model.MemberArticle;
 import com.website.sigma.model.Queries;
 import com.website.sigma.model.Roles;
+import com.website.sigma.repository.MemberArticleRepository;
 import com.website.sigma.repository.MemberRepository;
 import com.website.sigma.repository.QueriesRepository;
 import com.website.sigma.repository.RolesRepository;
@@ -37,6 +39,9 @@ public class CrudController {
 
     @Autowired
     private QueriesRepository queriesRepository;
+
+    @Autowired
+    private MemberArticleRepository memberArticleRepository;
 
     @PostMapping("/updated/{member_id}")
     public String updateMember(Member member, RedirectAttributes redirectAttributes,
@@ -96,5 +101,14 @@ public class CrudController {
         queriesRepository.delete(query);
         redirectAttributes.addFlashAttribute("message", "Deleted Question: "  + query.getQ_id());
         return "redirect:/studentqueries";
+    }
+
+    @GetMapping("/delete_article/{openuser_id}")
+    public String deleteMemberArticle(@PathVariable("openuser_id") long openuser_id, Model model, RedirectAttributes redirectAttributes) {
+        MemberArticle article = memberArticleRepository.findById(openuser_id)
+                .orElseThrow(() -> new IllegalArgumentException("Inavlid"));
+        memberArticleRepository.delete(article);
+        redirectAttributes.addFlashAttribute("message4", "Deleted Article: "  + article.getTitle());
+        return "redirect:/memberdashboard";
     }
 }
