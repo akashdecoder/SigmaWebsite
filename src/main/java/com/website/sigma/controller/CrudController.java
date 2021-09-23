@@ -111,4 +111,13 @@ public class CrudController {
         redirectAttributes.addFlashAttribute("message4", "Deleted Article: "  + article.getTitle());
         return "redirect:/memberdashboard";
     }
+
+    @GetMapping("/delete_article_fromall/{openuser_id}")
+    public String deleteMemberArticleFromAll(@PathVariable("openuser_id") long openuser_id, Model model, RedirectAttributes redirectAttributes) {
+        MemberArticle article = memberArticleRepository.findById(openuser_id)
+                .orElseThrow(() -> new IllegalArgumentException("Inavlid"));
+        memberArticleRepository.delete(article);
+        redirectAttributes.addFlashAttribute("message5", "Deleted Article: "  + article.getTitle());
+        return "redirect:/all_articles";
+    }
 }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> SIGMA | All Articles</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/mainimages/sigmlogo.jpeg" type="image/x-icon" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div>
+    <br>
+    <br>
+</div>
+
+<div class="container">
+    <br>
+    <br>
+    <div class="section-title text-center">
+        <h3><b>Articles</b></h3>
+        <hr style="color: black;">
+        <br>
+        <br>
+        <div th:if="${warning5 != null}" class="alert alert-danger text-center">[[${warning5}]]</div>
+        <div th:if="${message5 != null}" class="alert alert-success text-center">[[${message5}]]</div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="card h-100 col-md-12" th:each="articles: ${articles}">
+            <div class="section-title text-center">
+                <h3 th:text="${articles.title}"></h3>
+                <h2 th:text="${articles.firstname} + ' ' + ${articles.lastname}"></h2>
+                <h4 th:text="${articles.usn}"></h4>
+            </div>
+            <p style="color: black;" th:text="${articles.introduction}">
+            </p>
+            <p style="color: black;" th:text="${articles.body1}">
+            </p>
+
+            <p style="color: black;" th:text="${articles.body2}">
+            </p>
+
+            <p style="color: black;" th:text="${articles.conclusion}">
+            </p>
+
+            <a style="color: white" class="btn btn-danger btn-lg" th:href="@{/delete_article_fromall/{openuser_id}(openuser_id=${articles.openuser_id})}">Delete</a>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+</div>
+
+<br>
+<br>
+
+
+<a href="#" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+<script src="js/all.js"></script>
+<script src="js/jquery.mobile.customized.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/parallaxie.js"></script>
+<script src="js/headline.js"></script>
+<script src="js/jqBootstrapValidation.js"></script>
+<script src="js/contact_me.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/jquery.vide.js"></script>
+</body>
+</html>
+

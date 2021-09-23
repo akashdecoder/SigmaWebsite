@@ -3,6 +3,7 @@ package com.website.sigma.controller;
 import com.website.sigma.model.*;
 import com.website.sigma.repository.*;
 import com.website.sigma.security.MemberDetails;
+import com.website.sigma.utils.SortByTier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -18,11 +19,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-class SortByTier implements Comparator<Member> {
-    public int compare(Member a, Member b) {
-        return (int) (a.getTier() - b.getTier());
-    }
-}
 
 @Controller
 public class MainController {
@@ -81,9 +77,6 @@ public class MainController {
         model.addAttribute("messages", new Messages());
 
         List<MemberArticle> memberArticles = memberArticleRepository.findAllByUsn(member.getUsn().toUpperCase());
-        for(MemberArticle article : memberArticles) {
-            System.out.println(article.getTitle());
-        }
         model.addAttribute("articles", memberArticles);
 
         List<Messages> chats = messagesRepository.findAll();
@@ -170,5 +163,12 @@ public class MainController {
     @GetMapping("/recruitments")
     public String showRecruitmentPage() {
         return "recruitments";
+    }
+
+    @GetMapping("/all_articles")
+    public String showAllArticlesPage(Model model) {
+        List<MemberArticle> articles = memberArticleRepository.findAll();
+        model.addAttribute("articles", articles);
+        return "member_articles_all";
     }
 }
