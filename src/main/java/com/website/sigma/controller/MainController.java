@@ -54,7 +54,9 @@ public class MainController {
 
     @GetMapping("/articles")
     public String showArticlesPage(Model model) {
-        List<OpenUser> articles = openUserRepository.findAll();
+//        List<OpenUser> articles = openUserRepository.findAll();
+//        model.addAttribute("articles", articles);
+        List<MemberArticle> articles = memberArticleRepository.findAll();
         model.addAttribute("articles", articles);
         return "openarticle";
     }
