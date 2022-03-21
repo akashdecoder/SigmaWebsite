@@ -3,7 +3,9 @@ package com.website.sigma.controller;
 import com.website.sigma.model.*;
 import com.website.sigma.repository.*;
 import com.website.sigma.security.MemberDetails;
+import com.website.sigma.service.FirebaseService;
 import com.website.sigma.service.ValidationService;
+import com.website.sigma.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,6 +22,8 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
+import java.util.concurrent.ExecutionException;
 
 @Controller
 public class PostController {
@@ -44,6 +48,9 @@ public class PostController {
 
     @Autowired
     private QueriesRepository queriesRepository;
+
+    @Autowired
+    private FirebaseService firebaseService;
 
     @PostMapping("/contributed")
     public String contributeArticle(@Valid OpenUser openUser, BindingResult result, Model model,
@@ -157,5 +164,27 @@ public class PostController {
         redirectAttributes.addFlashAttribute("message", " Your query has been submitted. Please check the same page " +
                 "after sometime.");
         return "redirect:/queries";
+    }
+
+    @PostMapping("/recruitments/registered")
+    public String registerUser(@Valid User user, BindingResult result, RedirectAttributes redirectAttributes) throws ExecutionException, InterruptedException {
+        Random random = new Random();
+        long rand = random.nextInt(100000000);
+
+        User user1 = firebaseService.getUser(user.getUsn().toUpperCase());
+
+        if(user1 != null) {
+            redirectAttributes.addFlashAttribute("warning", "Already Registered. Contact event organizer for updates.");
+            return "redirect:/recruitments";
+        }
+
+        user.setUser_id(Long.toString(rand));
+        user.setUsn(user.getUsn().toUpperCase());
+        user.setBranch(UserUtils.getBranchName(user.getUsn().substring(5,7).toUpperCase()));
+
+        firebaseService.saveUser(user);
+
+        redirectAttributes.addFlashAttribute("message", "Registered.");
+        return "redirect:/recruitments";
     }
 }

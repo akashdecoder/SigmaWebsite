@@ -125,6 +125,9 @@ public class MainController {
     public String showTeamPage(Model model) {
         List<Member> teams = memberRepository.findAll();
         Collections.sort(teams, new SortByTier());
+        for(Member m : teams) {
+            System.out.println(m.getImage_url());
+        }
         model.addAttribute("teams", teams);
         return "team";
     }
@@ -163,7 +166,8 @@ public class MainController {
     }
 
     @GetMapping("/recruitments")
-    public String showRecruitmentPage() {
+    public String showRecruitmentPage(User user, Model model) {
+        model.addAttribute("user", user);
         return "recruitments";
     }
 

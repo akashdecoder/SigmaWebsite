@@ -138,29 +138,206 @@
 <!--    </div>-->
 <!--</div>-->
 
-<div class="section wb">
-    <div class="container">
-        <div class="section-title text-center">
-            <img src="/mainimages/recruit.png" class="img-fluid" alt="">
-        </div>
-    </div>
-</div>
+<!--<div class="section wb">-->
+<!--    <div class="container">-->
+<!--        <div class="section-title text-center">-->
+<!--            <img src="/mainimages/recruit.png" class="img-fluid" alt="">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-<div class="section wb">
-    <div class="container">
-        <div class="section-title text-center">
-            <h3><b>Recruitments Drive is over. See you in the next drive.</b></h3>
-        </div>
-    </div>
-</div>
+<!--<div class="section wb">-->
+<!--    <div class="container">-->
+<!--        <div class="section-title text-center">-->
+<!--            <h3><b>Recruitments Drive is over. See you in the next drive.</b></h3>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-<div class="section wb">
-    <div class="container">
-        <div class="section-title text-center">
-            <br>
-            <br>
-        </div>
+<!--<div class="section wb">-->
+<!--    <div class="container">-->
+<!--        <div class="section-title text-center">-->
+<!--            <br>-->
+<!--            <br>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<div class="container">
+    <div class="section-title text-center">
+        <br>
+        <h3><b>Sigma Recruitments 2022</b></h3>
+        <hr>
     </div>
+    <p><b>Rules and Regulations</b>
+    <ul style="color: #414141;">
+        <li>
+            Register with your college email ID or mail id with usn.
+        </li>
+        <li>
+            All the fields are mandatory. Don't provide wrong details.
+        </li>
+        <li>
+            If you are facing any kinds of errors during registration, mail your details based on the form to <a href="mailto: sigmacse2001.sit@gmail.com">sigmacse2001.sit@gmail.com</a>.
+        </li>
+        <li>
+            After registration please join the WhatsApp group provided on the success page and check mails frequently to receive further instructions.
+        </li>
+        <li>
+            Visit <a href="https://sigmacse.herokuapp.com/">sigmacse.herokuapp.com</a> to know about us.
+        </li>
+    </ul>
+    </p>
+    <!--        <hr>-->
+    <!--        <p>-->
+    <!--            <b style="font-size: large">Download Resume Format: </b>-->
+    <!--            <a href="https://drive.google.com/drive/folders/1FYEPkgREPPBP69wU7b2hkBBcd8jtLQxc?usp=sharing">-->
+    <!--                <b>Click Here</b>-->
+    <!--            </a>-->
+    <!--        </p>-->
+    <hr>
+    <form class="form-group text-center" th:action="@{/recruitments/registered}" th:object="${user}" method="post" enctype="multipart/form-data">
+        <div th:if="${warning != null}" class="alert alert-danger text-center">[[${warning}]]</div>
+        <div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
+        <div class="row g-3" style="justify-content: center;">
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input placeholder="First name" type="text" id="firstName" class="form-control" th:field="*{firstName}" required>
+                    <label for="firstName">First name</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input placeholder="Last name" type="text" id="lastName" class="form-control" th:field="*{lastName}" required>
+                    <label for="lastName">Last name</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <select class="form-control" style="height: 54px" th:field="*{year}">
+                        <option value="0">--Select--</option>
+                        <option value="1st Year"> 1st Year </option>
+                        <option value="2nd Year"> 2nd Year </option>
+                        <label>Year</label>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input placeholder="USN" type="text" id="usn" class="form-control" th:field="*{usn}" required>
+                    <label for="usn">USN</label>
+                </div>
+            </div>
+            <!--                <div class="col-md-6">-->
+            <!--                    <div class="form-group">-->
+            <!--                        <label class="form-label" for="dob">Date of Birth (Password for future use)</label>-->
+            <!--                        <input type="date" id="dob" class="form-control" th:field="*{dob}" required>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input placeholder="Email" type="email" id="email" class="form-control" th:field="*{email}" required>
+                    <label for="email">Email</label>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input placeholder="Contact" type="tel" id="tel" class="form-control" th:field="*{contact}" required>
+                    <label for="tel">Contact</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input placeholder="Github ID (If you don't have, create one and paste your profile url here.)" type="url" id="github" class="form-control" th:field="*{github}" required>
+                    <label for="github">Github ID (If you don't have, create one and paste your profile url here.)</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input placeholder="LinkedIn ID (If you don't have, create one and paste your profile url here.)" type="url" id="linkedin" class="form-control" th:field="*{linkedin}" required>
+                    <label for="linkedin">LinkedIn ID (If you don't have, create one and paste your profile url here.)</label>
+                </div>
+            </div>
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-floating">-->
+<!--                    <input placeholder="HackerRank ID (If you don't have, create one and paste your profile url here.)" type="text" id="hackerrank" class="form-control" th:field="*{hackerrank}" required>-->
+<!--                    <label for="hackerrank">HackerRank ID (If you don't have, create one and paste your profile url here.)</label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-floating">-->
+<!--                    <label for="leetcode">LeetCode ID (If you don't have, create one and paste your profile url here.)</label>-->
+<!--                    <input placeholder="LeetCode ID (If you don't have, create one and paste your profile url here.)" type="text" id="leetcode" class="form-control" th:field="*{leetcode}" required>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input placeholder="Programming Languages Learned" type="text" id="language" class="form-control" th:field="*{pLanguage}" required>
+                    <label for="language">Programming Languages Learned</label>
+                </div>
+            </div>
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-floating">-->
+<!--                    <input placeholder="Number of Projects Done" type="number" id="projects" class="form-control" th:field="*{projects}" required>-->
+<!--                    <label for="projects">Number of Projects Done</label>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input placeholder="Member of Any Other Clubs (Mention the names)" type="text" id="groups" class="form-control" th:field="*{groups}" required>
+                    <label for="groups">Member of Any Other Clubs (Mention the names)</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <textarea placeholder="Why do you want to join this group?" maxlength="10000" cols="1000" style="resize: none; height: 300px;" type="text-a" id="why" class="form-control" th:field="*{why}" required></textarea>
+                    <label for="why">Why do you want to join this group?</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <textarea placeholder="Why do we hire you?" maxlength="10000" cols="1000" style="resize: none; height: 300px;" type="text-a" id="whys" class="form-control" th:field="*{whys}" required></textarea>
+                    <label for="whys">Why do we hire you?</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-floating">
+                    <textarea placeholder="What do you know about Sigma?" maxlength="10000" cols="1000" style="resize: none; height: 300px;" type="text-a" id="about" class="form-control" th:field="*{about}" required></textarea>
+                    <label for="about">What do you know about Sigma?</label>
+                </div>
+            </div>
+
+
+            <!--                <div class="col-md-12">-->
+            <!--                    <div class="form-group">-->
+            <!--                        <label class="form-label" for="file">Upload Resume (PDF only and Max File Size: 1MB)</label>-->
+            <!--                        <input type="file" name="File" id="file" accept="application/pdf" class="form-control-file" required>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+        </div>
+        <!--            <div class="col-lg-12">-->
+        <!--                <input type="checkbox" id="check" name="checked" value="check">-->
+        <!--                <label for="check">I hereby declare that the information given by me is correct.</label><br><br>-->
+        <!--            </div>-->
+        <div class="col-lg-12 text-center">
+            <br>
+            <button type="submit" class="btn btn-success hvr-bounce-to-top btn-lg"
+                    value="Register"><b>Register</b>
+            </button>
+            <button type="reset" class="btn btn-warning hvr-bounce-to-top btn-lg" value="Clear"><b>Clear</b>
+            </button>
+        </div>
+        <br>
+        <br>
+        <br>
+    </form>
 </div>
 
 <div class="copyrights">
