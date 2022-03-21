@@ -38,4 +38,10 @@ public class User {
     private @Getter @Setter String whys;
 
     private @Getter @Setter String about;
+
+    private @Getter @Setter String specialization;
+
+    private @Getter @Setter String interest;
+
+    private @Getter @Setter String fileUrl;
 }

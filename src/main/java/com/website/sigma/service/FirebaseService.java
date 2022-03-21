@@ -1,7 +1,13 @@
 package com.website.sigma.service;
 
 import com.google.api.core.ApiFuture;
+import com.google.auth.Credentials;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.*;
+import com.google.cloud.storage.BlobId;
+import com.google.cloud.storage.BlobInfo;
+import com.google.cloud.storage.Storage;
+import com.google.cloud.storage.StorageOptions;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -9,6 +15,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.website.sigma.model.User;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.file.Files;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -18,6 +29,7 @@ public class FirebaseService
 {
 
     public static final String COL_NAME = "recruitments_2022";
+    private static final String DOWNLOAD_URL = "https://storage.googleapis.com/sigma-website-31001.appspot.com/%s";
 
     public String saveUser(User user) throws InterruptedException, ExecutionException
     {
@@ -78,5 +90,22 @@ public class FirebaseService
 
         return "Deleted";
     }
+
+    public String uploadFile(File file, String fileName) throws IOException
+    {
+        BlobId blobId = BlobId.of("sigma-website-31001.appspot.com", fileName);
+        BlobInfo blobInfo = BlobInfo.newBuilder(blobId)
+                .setContentType("application/pdf")
+                .build();
+
+        Credentials credentials = GoogleCredentials.fromStream(new FileInputStream("src/main/resources/sigma-website-31001-firebase-adminsdk-5xfrs-e007d74f1a.json"));
+        Storage storage = StorageOptions.newBuilder()
+                .setCredentials(credentials).build().getService();
+        storage.create(blobInfo, Files.readAllBytes(file.toPath()));
+        return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName,  "UTF-8"));
+    }
+
+
+
 }
 

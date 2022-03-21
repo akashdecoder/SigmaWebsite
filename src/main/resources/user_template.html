@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" content="Sigma"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!--    <meta name="keywords" content="Dynamics">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Sigma">
+    <meta name="author" content="Sigma">
+    <meta name="keywords" content="Sigma">
+    <title>Sigma</title>
+
+</head>
+
+
+<body>
+
+<div class="section-wb">
+    <div class="container">
+
+<!--        <center>-->
+<!--            <img src="logo1.png" alt="logo1">-->
+<!--        </center>-->
+
+        <hr>
+
+        <br>
+
+        <div class="section-title">
+            <h1 style="color: green" th:text="'Name:  '+ ${name}"/>
+            <h4 th:text="'USN:  ' + ${usn}"></h4>
+            <h4 th:text="'Branch:  ' + ${branch}"></h4>
+            <h4 th:text="'Year:  ' + ${year}"></h4>
+            <h4 th:href="@{${email}}" th:text="'Email:  ' + ${email}"></h4>
+            <h4 th:text="'Contact:  ' + ${contact}"></h4>
+            <h4 th:text="'Programming Languages:  ' + ${pLanguage}"></h4>
+            <h4 th:text="'Groups:  ' + ${groups}"></h4>
+            <h4 th:text="'Github:  ' + ${github}"></h4>
+            <h4 th:text="'LinkedIn:  ' + ${linkedin}"></h4>
+            <br>
+            <p style="page-break-after: always;">.</p>
+            <h4>Why Should I join Dynamics?</h4>
+            <p th:text="${why}">.</p>
+            <br>
+            <h4>Why should Dynamics hire you?</h4>
+            <p th:text="${whys}">.</p>
+            <br>
+            <h4>About Dynamics</h4>
+            <p th:text="${about}">.</p>
+            <br>
+            <h4 th:text="'Specialization:  ' + ${specialization}"></h4>
+            <h4 th:text="'Interest:  ' + ${interest}"></h4>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

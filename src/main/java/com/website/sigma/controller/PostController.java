@@ -3,6 +3,7 @@ package com.website.sigma.controller;
 import com.website.sigma.model.*;
 import com.website.sigma.repository.*;
 import com.website.sigma.security.MemberDetails;
+import com.website.sigma.service.FileService;
 import com.website.sigma.service.FirebaseService;
 import com.website.sigma.service.ValidationService;
 import com.website.sigma.utils.UserUtils;
@@ -14,6 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +56,9 @@ public class PostController {
 
     @Autowired
     private FirebaseService firebaseService;
+
+    @Autowired
+    private FileService fileService;
 
     @PostMapping("/contributed")
     public String contributeArticle(@Valid OpenUser openUser, BindingResult result, Model model,
@@ -167,7 +175,9 @@ public class PostController {
     }
 
     @PostMapping("/recruitments/registered")
-    public String registerUser(@Valid User user, BindingResult result, RedirectAttributes redirectAttributes) throws ExecutionException, InterruptedException {
+    public String registerUser(@Valid User user, @RequestParam("File") MultipartFile multipartFile, BindingResult result, RedirectAttributes redirectAttributes) throws ExecutionException, InterruptedException, IOException {
+        String url = "";
+
         Random random = new Random();
         long rand = random.nextInt(100000000);
 
@@ -181,6 +191,11 @@ public class PostController {
         user.setUser_id(Long.toString(rand));
         user.setUsn(user.getUsn().toUpperCase());
         user.setBranch(UserUtils.getBranchName(user.getUsn().substring(5,7).toUpperCase()));
+
+        FileUser fileUser = new FileUser();
+        fileUser.setMultipartFile(multipartFile);
+        url = fileService.upload(multipartFile, user);
+        user.setFileUrl(url);
 
         firebaseService.saveUser(user);
 

@@ -215,12 +215,12 @@
             </div>
             <div class="col-md-6">
                 <div class="form-floating">
-                    <select class="form-control" style="height: 54px" th:field="*{year}">
+                    <select class="form-control" style="height: 54px" th:field="*{year}" required>
                         <option value="0">--Select--</option>
                         <option value="1st Year"> 1st Year </option>
                         <option value="2nd Year"> 2nd Year </option>
-                        <label>Year</label>
                     </select>
+                    <label>Year</label>
                 </div>
             </div>
             <div class="col-md-6">
@@ -229,12 +229,6 @@
                     <label for="usn">USN</label>
                 </div>
             </div>
-            <!--                <div class="col-md-6">-->
-            <!--                    <div class="form-group">-->
-            <!--                        <label class="form-label" for="dob">Date of Birth (Password for future use)</label>-->
-            <!--                        <input type="date" id="dob" class="form-control" th:field="*{dob}" required>-->
-            <!--                    </div>-->
-            <!--                </div>-->
             <div class="col-md-6">
                 <div class="form-floating">
                     <input placeholder="Email" type="email" id="email" class="form-control" th:field="*{email}" required>
@@ -261,18 +255,6 @@
                     <label for="linkedin">LinkedIn ID (If you don't have, create one and paste your profile url here.)</label>
                 </div>
             </div>
-<!--            <div class="col-md-6">-->
-<!--                <div class="form-floating">-->
-<!--                    <input placeholder="HackerRank ID (If you don't have, create one and paste your profile url here.)" type="text" id="hackerrank" class="form-control" th:field="*{hackerrank}" required>-->
-<!--                    <label for="hackerrank">HackerRank ID (If you don't have, create one and paste your profile url here.)</label>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-md-6">-->
-<!--                <div class="form-floating">-->
-<!--                    <label for="leetcode">LeetCode ID (If you don't have, create one and paste your profile url here.)</label>-->
-<!--                    <input placeholder="LeetCode ID (If you don't have, create one and paste your profile url here.)" type="text" id="leetcode" class="form-control" th:field="*{leetcode}" required>-->
-<!--                </div>-->
-<!--            </div>-->
 
             <div class="col-md-6">
                 <div class="form-floating">
@@ -280,12 +262,6 @@
                     <label for="language">Programming Languages Learned</label>
                 </div>
             </div>
-<!--            <div class="col-md-6">-->
-<!--                <div class="form-floating">-->
-<!--                    <input placeholder="Number of Projects Done" type="number" id="projects" class="form-control" th:field="*{projects}" required>-->
-<!--                    <label for="projects">Number of Projects Done</label>-->
-<!--                </div>-->
-<!--            </div>-->
             <div class="col-md-6">
                 <div class="form-floating">
                     <input placeholder="Member of Any Other Clubs (Mention the names)" type="text" id="groups" class="form-control" th:field="*{groups}" required>
@@ -314,19 +290,41 @@
                 </div>
             </div>
 
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <select class="form-control" style="height: 54px" th:field="*{specialization}" required>
+                        <option value="0">--Select--</option>
+                        <option value="Writing"> Writing </option>
+                        <option value="Design"> Design </option>
+                        <option value="Photoshop"> Photoshop </option>
+                        <option value="Coding"> Coding </option>
+                        <option value="None"> None </option>
+                    </select>
+                    <label>Specialization</label>
+                </div>
+            </div>
 
-            <!--                <div class="col-md-12">-->
-            <!--                    <div class="form-group">-->
-            <!--                        <label class="form-label" for="file">Upload Resume (PDF only and Max File Size: 1MB)</label>-->
-            <!--                        <input type="file" name="File" id="file" accept="application/pdf" class="form-control-file" required>-->
-            <!--                    </div>-->
-            <!--                </div>-->
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <select class="form-control" style="height: 54px" th:field="*{interest}" required>
+                        <option value="0">--Select--</option>
+                        <option value="Writing"> Writing </option>
+                        <option value="Design"> Design </option>
+                        <option value="Photoshop"> Photoshop </option>
+                        <option value="Coding"> Coding </option>
+                    </select>
+                    <label>Interest</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="file">If there is any specialization upload a sample (PDF only and Max File Size: 1MB)</label>
+                    <input type="file" name="File" id="file" accept="application/pdf" class="form-control-file" required>
+                </div>
+            </div>
         </div>
-        <!--            <div class="col-lg-12">-->
-        <!--                <input type="checkbox" id="check" name="checked" value="check">-->
-        <!--                <label for="check">I hereby declare that the information given by me is correct.</label><br><br>-->
-        <!--            </div>-->
-        <div class="col-lg-12 text-center">
+        <div class="col-md-12 text-center">
             <br>
             <button type="submit" class="btn btn-success hvr-bounce-to-top btn-lg"
                     value="Register"><b>Register</b>
