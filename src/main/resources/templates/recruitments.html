@@ -197,7 +197,8 @@
     <!--            </a>-->
     <!--        </p>-->
     <hr>
-    <form class="form-group text-center" th:action="@{/recruitments/registered}" th:object="${user}" method="post" enctype="multipart/form-data">
+<!--    enctype="multipart/form-data"-->
+    <form class="form-group text-center" th:action="@{/recruitments/registered}" th:object="${user}" method="post">
         <div th:if="${warning != null}" class="alert alert-danger text-center">[[${warning}]]</div>
         <div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
         <div class="row g-3" style="justify-content: center;">
@@ -245,84 +246,84 @@
 
             <div class="col-md-6">
                 <div class="form-floating">
-                    <input placeholder="Github ID (If you don't have, create one and paste your profile url here.)" type="url" id="github" class="form-control" th:field="*{github}" required>
+                    <input placeholder="Github ID (If you don't have, create one and paste your profile url here.)" type="url" id="github" class="form-control" th:field="*{github}">
                     <label for="github">Github ID (If you don't have, create one and paste your profile url here.)</label>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-floating">
-                    <input placeholder="LinkedIn ID (If you don't have, create one and paste your profile url here.)" type="url" id="linkedin" class="form-control" th:field="*{linkedin}" required>
+                    <input placeholder="LinkedIn ID (If you don't have, create one and paste your profile url here.)" type="url" id="linkedin" class="form-control" th:field="*{linkedin}">
                     <label for="linkedin">LinkedIn ID (If you don't have, create one and paste your profile url here.)</label>
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input placeholder="Programming Languages Learned" type="text" id="language" class="form-control" th:field="*{pLanguage}" required>
-                    <label for="language">Programming Languages Learned</label>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input placeholder="Member of Any Other Clubs (Mention the names)" type="text" id="groups" class="form-control" th:field="*{groups}" required>
-                    <label for="groups">Member of Any Other Clubs (Mention the names)</label>
-                </div>
-            </div>
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-floating">-->
+<!--                    <input placeholder="Programming Languages Learned" type="text" id="language" class="form-control" th:field="*{pLanguage}" required>-->
+<!--                    <label for="language">Programming Languages Learned</label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-floating">-->
+<!--                    <input placeholder="Member of Any Other Clubs (Mention the names)" type="text" id="groups" class="form-control" th:field="*{groups}" required>-->
+<!--                    <label for="groups">Member of Any Other Clubs (Mention the names)</label>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <textarea placeholder="Why do you want to join this group?" maxlength="10000" cols="1000" style="resize: none; height: 300px;" type="text-a" id="why" class="form-control" th:field="*{why}" required></textarea>
-                    <label for="why">Why do you want to join this group?</label>
-                </div>
-            </div>
+<!--            <div class="col-md-12">-->
+<!--                <div class="form-floating">-->
+<!--                    <textarea placeholder="Why do you want to join this group?" maxlength="10000" cols="1000" style="resize: none; height: 300px;" type="text-a" id="why" class="form-control" th:field="*{why}" required></textarea>-->
+<!--                    <label for="why">Why do you want to join this group?</label>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <textarea placeholder="Why do we hire you?" maxlength="10000" cols="1000" style="resize: none; height: 300px;" type="text-a" id="whys" class="form-control" th:field="*{whys}" required></textarea>
-                    <label for="whys">Why do we hire you?</label>
-                </div>
-            </div>
+<!--            <div class="col-md-12">-->
+<!--                <div class="form-floating">-->
+<!--                    <textarea placeholder="Why do we hire you?" maxlength="10000" cols="1000" style="resize: none; height: 300px;" type="text-a" id="whys" class="form-control" th:field="*{whys}" required></textarea>-->
+<!--                    <label for="whys">Why do we hire you?</label>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-md-12">
-                <div class="form-floating">
-                    <textarea placeholder="What do you know about Sigma?" maxlength="10000" cols="1000" style="resize: none; height: 300px;" type="text-a" id="about" class="form-control" th:field="*{about}" required></textarea>
-                    <label for="about">What do you know about Sigma?</label>
-                </div>
-            </div>
+<!--            <div class="col-md-12">-->
+<!--                <div class="form-floating">-->
+<!--                    <textarea placeholder="What do you know about Sigma?" maxlength="10000" cols="1000" style="resize: none; height: 300px;" type="text-a" id="about" class="form-control" th:field="*{about}" required></textarea>-->
+<!--                    <label for="about">What do you know about Sigma?</label>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <select class="form-control" style="height: 54px" th:field="*{specialization}" required>
-                        <option value="0">--Select--</option>
-                        <option value="Writing"> Writing </option>
-                        <option value="Design"> Design </option>
-                        <option value="Photoshop"> Photoshop </option>
-                        <option value="Coding"> Coding </option>
-                        <option value="None"> None </option>
-                    </select>
-                    <label>Specialization</label>
-                </div>
-            </div>
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-floating">-->
+<!--                    <select class="form-control" style="height: 54px" th:field="*{specialization}" required>-->
+<!--                        <option value="0">&#45;&#45;Select&#45;&#45;</option>-->
+<!--                        <option value="Writing"> Writing </option>-->
+<!--                        <option value="Design"> Design </option>-->
+<!--                        <option value="Photoshop"> Photoshop </option>-->
+<!--                        <option value="Coding"> Coding </option>-->
+<!--                        <option value="None"> None </option>-->
+<!--                    </select>-->
+<!--                    <label>Specialization</label>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <select class="form-control" style="height: 54px" th:field="*{interest}" required>
-                        <option value="0">--Select--</option>
-                        <option value="Writing"> Writing </option>
-                        <option value="Design"> Design </option>
-                        <option value="Photoshop"> Photoshop </option>
-                        <option value="Coding"> Coding </option>
-                    </select>
-                    <label>Interest</label>
-                </div>
-            </div>
+<!--            <div class="col-md-6">-->
+<!--                <div class="form-floating">-->
+<!--                    <select class="form-control" style="height: 54px" th:field="*{interest}" required>-->
+<!--                        <option value="0">&#45;&#45;Select&#45;&#45;</option>-->
+<!--                        <option value="Writing"> Writing </option>-->
+<!--                        <option value="Design"> Design </option>-->
+<!--                        <option value="Photoshop"> Photoshop </option>-->
+<!--                        <option value="Coding"> Coding </option>-->
+<!--                    </select>-->
+<!--                    <label>Interest</label>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="file">If there is any specialization upload a sample (PDF only and Max File Size: 1MB)</label>
-                    <input type="file" name="File" id="file" accept="application/pdf" class="form-control-file" required>
-                </div>
-            </div>
+<!--            <div class="col-md-12">-->
+<!--                <div class="form-group">-->
+<!--                    <label for="file">If there is any specialization upload a sample (PDF only and Max File Size: 1MB)</label>-->
+<!--                    <input type="file" name="File" id="file" accept="application/pdf" class="form-control-file" required>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
         <div class="col-md-12 text-center">
             <br>
@@ -336,6 +337,9 @@
         <br>
         <br>
     </form>
+    <br>
+    <br>
+    <br>
 </div>
 
 <div class="copyrights">

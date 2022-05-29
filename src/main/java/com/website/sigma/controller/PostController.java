@@ -174,8 +174,9 @@ public class PostController {
         return "redirect:/queries";
     }
 
+//    @RequestParam("File") MultipartFile multipartFile
     @PostMapping("/recruitments/registered")
-    public String registerUser(@Valid User user, @RequestParam("File") MultipartFile multipartFile, BindingResult result, RedirectAttributes redirectAttributes) throws ExecutionException, InterruptedException, IOException {
+    public String registerUser(@Valid User user, BindingResult result, RedirectAttributes redirectAttributes) throws ExecutionException, InterruptedException, IOException {
         String url = "";
 
         Random random = new Random();
@@ -191,11 +192,20 @@ public class PostController {
         user.setUser_id(Long.toString(rand));
         user.setUsn(user.getUsn().toUpperCase());
         user.setBranch(UserUtils.getBranchName(user.getUsn().substring(5,7).toUpperCase()));
+        user.setInterest("*****");
+        user.setSpecialization("*****");
+        user.setWhys("*****");
+        user.setWhy("******");
+        user.setAbout("******");
+        user.setPLanguage("******");
+        user.setGroups("******");
+        user.setFileUrl("******");
 
-        FileUser fileUser = new FileUser();
-        fileUser.setMultipartFile(multipartFile);
-        url = fileService.upload(multipartFile, user);
-        user.setFileUrl(url);
+
+//        FileUser fileUser = new FileUser();
+//        fileUser.setMultipartFile(multipartFile);
+//        url = fileService.upload(multipartFile, user);
+//        user.setFileUrl(url);
 
         firebaseService.saveUser(user);
 

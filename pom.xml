@@ -9,8 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.website</groupId>
+    <packaging>war</packaging>
     <artifactId>Sigma</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+<!--    <version>0.0.1-SNAPSHOT</version>-->
     <name>Sigma</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -119,6 +120,12 @@
             <artifactId>jtidy</artifactId>
             <version>r938</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <version>2.6.5</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -132,6 +139,7 @@
     </dependencies>
 
     <build>
+        <finalName>Sigma</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
