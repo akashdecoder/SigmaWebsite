@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.website</groupId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <artifactId>Sigma</artifactId>
 <!--    <version>0.0.1-SNAPSHOT</version>-->
     <name>Sigma</name>
